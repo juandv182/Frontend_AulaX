@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../context/AuthContext";
+import  styles from '../Login.css'
 
 const initialLoginForm = {
     username: '',
@@ -33,40 +34,40 @@ export const LoginPage = () => {
         setLoginForm(initialLoginForm);
     }
     return (
-        <div className="modal" style={ {display: 'block'} } tabIndex="-1">
-            <div className="modal-dialog">
-                <div className="modal-content">
-                    <div className="modal-header">
-                        <h5 className="modal-title">Login Page</h5>
+<div className="login-container">
+            <div className="login-form">
+                <h2>ACCESO AL SISTEMA</h2>
+                <form onSubmit={ onSubmit }>
+                    <input
+                        className="form-control my-3"
+                        placeholder="Email"
+                        name="email"
+                        value={username}
+                        onChange={ onInputChange }
+                    />
+                    
+                    <input
+                        className="form-control my-3"
+                        placeholder="Contraseña"
+                        type="password"
+                        name="password"
+                        value={password}
+                        onChange={onInputChange}
+                    />
+                    <div className="form-check">
+                      <input className="form-check-input" type="checkbox" id="rememberMe" />
+                      <label className="form-check-label" htmlFor="rememberMe">
+                        Recuerda la cuenta
+                      </label>
                     </div>
-                    <form onSubmit={ onSubmit }>
-                        <div className="modal-body">
-                            <input
-                                className="form-control my-3 w-75"
-                                placeholder="Username"
-                                name="username"
-                                value={username}
-                                onChange={ onInputChange }
-                            />
-                            
-                            <input
-                                className="form-control my-3 w-75"
-                                placeholder="Password"
-                                type="password"
-                                name="password"
-                                value={password}
-                                onChange={onInputChange}
-                            />
-                        </div>
-                        <div className="modal-footer">
-                            <button
-                                className="btn btn-primary"
-                                type="submit">
-                                Login
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                    <a href="#" className="link">¿Se olvidó su contraseña?</a>
+                    <button
+                        className="btn btn-success"
+                        type="submit">
+                        Iniciar Sesión
+                    </button>
+                    <p>¿No tiene una cuenta? <a href="#" className="link">Regístrese</a></p>
+                </form>
             </div>
         </div>
     );
