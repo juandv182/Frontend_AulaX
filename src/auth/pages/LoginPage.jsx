@@ -1,7 +1,8 @@
 import { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../context/AuthContext";
-import  styles from '../Login.css'
+import '../Login.css'
+import logo from '../../assets/LOGO.png';
 
 const initialLoginForm = {
     username: '',
@@ -16,6 +17,7 @@ export const LoginPage = () => {
 
     const onInputChange = ({ target }) => {
         const { name, value } = target;
+        console.log(value);
         setLoginForm({
             ...loginForm,
             [ name ]: value,
@@ -34,14 +36,15 @@ export const LoginPage = () => {
         setLoginForm(initialLoginForm);
     }
     return (
-<div className="login-container">
-            <div className="login-form">
+        <div className="login-container">
+            <div   div className="login-form">
+                <img src={logo} alt="Logo" className="login-logo" />
                 <h2>ACCESO AL SISTEMA</h2>
                 <form onSubmit={ onSubmit }>
                     <input
                         className="form-control my-3"
                         placeholder="Email"
-                        name="email"
+                        name="username"
                         value={username}
                         onChange={ onInputChange }
                     />

@@ -2,17 +2,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #f4f6f8; /* ajusta el color de fondo según el diseño */
+    height: 55rem;
+    background-color: var(--primario) ; 
+    font-family: "Baloo 2", sans-serif;
+    font-weight: bold;
 }
 
 .login-form {
-    background-color: #fff;
+    background-color: var(--blanco);
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     width: 100%;
-    max-width: 400px; /* o el ancho que prefieras */
+    max-width: 40rem; 
 }
 
 .login-form h2 {
@@ -26,36 +28,40 @@
     padding: 1rem;
     margin-bottom: 1rem;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 2rem;
+    font-size: medium;
+    background-color: #F0F0F0;
 }
 
 .login-form button {
     width: 100%;
     padding: 1rem;
-    background-color: #5cb85c; /* color de botón verde */
+    background-color: var(--verde); 
     border: none;
     border-radius: 4px;
     color: white;
     cursor: pointer;
+    font-size: larger;
 }
 
 .login-form .link {
     display: block;
     text-align: center;
     margin-top: 1rem;
-    color: #007bff; /* azul estándar para enlaces */
+    color: #007bff; 
     text-decoration: none;
 }
 
 .login-form .form-check {
     display: flex;
     justify-content: start;
-    align-items: center;
+    align-items: start;
     margin-bottom: 1rem;
 }
 
 .login-form .form-check-input {
-    margin-right: 0.5rem;
+    margin-right: 20rem;
+    
 }
 
 .login-form .form-check-label {
@@ -63,9 +69,10 @@
 }
 
 .login-logo {
-    width: 100px; /* o el tamaño que prefieras */
-    margin-bottom: 1rem;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    width: 100px; 
+    height: auto;
+    padding-bottom: 2rem; 
 }
