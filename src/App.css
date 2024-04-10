@@ -17,3 +17,64 @@ html {
 body {
   font-size: 16px; /* 1rem = 10px */
 }
+/* Sidebar.css */
+
+/* Aplica el color de fondo al contenedor principal del sidebar */
+.sidebar-menu {
+  margin: 0;
+  padding: 0;
+  width: 250px; /* Ajusta según tus necesidades */
+  background-color: #293b5f; /* El color se aplica a todo el sidebar */
+  min-height: 100vh; /* Asegura que el sidebar se extienda a la altura completa de la ventana */
+}
+
+/* No necesitas establecer un fondo para el header ya que el .sidebar-menu ya tiene el color */
+
+/* Estilos para la marca del sidebar, por ejemplo, un logotipo o título */
+.sidebar-menu-brand {
+  display: block; /* Asegura que la marca ocupe todo el ancho disponible */
+  padding: 1rem; /* Espacio alrededor del contenido del header */
+  text-align: center; /* Centra el contenido horizontalmente */
+  margin-bottom: 1rem; /* Espacio después del header */
+  color: white; /* Color del texto en el header */
+}
+
+/* Estilos para los enlaces dentro del sidebar */
+.sidebar-menu-nav-link {
+  display: block;
+  color: white; /* Color del texto de los enlaces */
+  background-color: #f0ad4e; /* Mantén el naranja para el fondo de los botones */
+  padding: 10px 20px;
+  text-decoration: none; /* No subrayado */
+  margin: 8px 15px; /* Margen para espaciado */
+  border-radius: 20px; /* Bordes redondeados para los botones */
+  transition: background-color 0.3s; /* Suaviza el cambio de color al interactuar */
+}
+
+/* Efecto al pasar el mouse sobre los botones */
+.sidebar-menu-nav-link:hover {
+  background-color: #ec971f; /* Un naranja más oscuro al pasar el mouse */
+}
+
+/* Iconos en los enlaces de navegación */
+.sidebar-menu-nav-icon {
+  margin-right: 10px; /* Espacio entre el icono y el texto */
+}
+
+/* Responsividad: Ajustes para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .sidebar-menu {
+      width: 60px; /* Ancho más pequeño para dispositivos móviles */
+  }
+
+  /* Oculta el texto para dispositivos móviles */
+  .sidebar-menu-nav-title,
+  .sidebar-menu-brand div {
+      display: none;
+  }
+
+  /* Aumenta el tamaño de los iconos para dispositivos móviles */
+  .sidebar-menu-nav-icon {
+      font-size: 1.5rem;
+  }
+}
