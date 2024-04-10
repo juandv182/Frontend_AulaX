@@ -23,8 +23,8 @@ body {
 .sidebar-menu {
   margin: 0;
   padding: 0;
-  width: 250px; /* Ajusta según tus necesidades */
-  background-color: #293b5f; /* El color se aplica a todo el sidebar */
+  width: 25rem; /* Ajusta según tus necesidades */
+  background-color: var(--secundario); /* El color se aplica a todo el sidebar */
   min-height: 100vh; /* Asegura que el sidebar se extienda a la altura completa de la ventana */
 }
 
@@ -43,7 +43,7 @@ body {
 .sidebar-menu-nav-link {
   display: block;
   color: white; /* Color del texto de los enlaces */
-  background-color: #f0ad4e; /* Mantén el naranja para el fondo de los botones */
+  background-color: var(--naranja); /* Mantén el naranja para el fondo de los botones */
   padding: 10px 20px;
   text-decoration: none; /* No subrayado */
   margin: 8px 15px; /* Margen para espaciado */
@@ -53,7 +53,7 @@ body {
 
 /* Efecto al pasar el mouse sobre los botones */
 .sidebar-menu-nav-link:hover {
-  background-color: #ec971f; /* Un naranja más oscuro al pasar el mouse */
+  background-color: #ab6400; /* Un naranja más oscuro al pasar el mouse */
 }
 
 /* Iconos en los enlaces de navegación */
