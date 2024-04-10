@@ -14,7 +14,7 @@ function App() {
           {
               login.isAuth
                   ? (
-                      <Route path='/cursos' element={<AppRoutes />} />
+                      <Route path='/*' element={<AppRoutes />} />
                   )
                   : <>
                       <Route path='/login' element={<LoginPage />} />

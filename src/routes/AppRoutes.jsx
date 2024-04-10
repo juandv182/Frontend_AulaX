@@ -6,11 +6,15 @@ import { RegisterPage } from "../pages/RegisterPage"
 import { UsersPage } from "../pages/UsersPage"
 import { MisCursos } from "../pages/MisCursos"
 import { Sidebar } from "../components/layout/Sidebar"
+import TopBar from "../components/layout/Topbar"
 
 export const AppRoutes = () => {
     return (
         <>
+
             <UserProvider>
+                <TopBar/>
+            <div className="app-container">
                 <Sidebar />
                 <Routes>
                     <Route path="users" element={<UsersPage />} />
@@ -19,6 +23,7 @@ export const AppRoutes = () => {
                     <Route path="cursos" element={<MisCursos />} />
                     <Route path="/" element={<Navigate to="/cursos" />} />
                 </Routes>
+            </div>
             </UserProvider>
         </>
     )

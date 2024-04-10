@@ -16,6 +16,11 @@ html {
 }
 body {
   font-size: 16px; /* 1rem = 10px */
+  background-color: var(--primario);
+}
+.app-container {
+  display: flex;
+  min-height: 100vh; /* Altura mínima para cubrir la altura de la pantalla */
 }
 /* Sidebar.css */
 
@@ -84,4 +89,32 @@ body {
   .sidebar-menu-nav-icon {
       font-size: 1.5rem;
   }
+}
+/*Componentes*/
+.top-bar {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0047ab; /* Ajusta el color según tu diseño */
+  
+}
+
+.page-title-bar {
+  background-color: var(--verde); /* Ajusta el color según tu diseño */
+  text-align: center;
+  border-radius: 2rem;
+  
+}
+
+.course-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px; /* Ajusta el tamaño según tu diseño */
+  height: 150px; /* Ajusta el tamaño según tu diseño */
+  margin: 10px;
+  border-radius: 15px; /* Bordes redondeados */
+  background-color: #f0ad4e; /* Ajusta el color según tu diseño */
+  /* ... más estilos ... */
 }
