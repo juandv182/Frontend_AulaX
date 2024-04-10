@@ -2,7 +2,8 @@ import { useContext } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { AuthContext } from './auth/context/AuthContext';
 import { LoginPage } from './auth/pages/LoginPage';
-import { UserRoutes } from './routes/UserRoutes';
+import { AppRoutes } from './routes/AppRoutes';
+import { MisCursos } from './pages/MisCursos';
 import './App.css'
 import './normalize.css'
 
@@ -13,7 +14,7 @@ function App() {
           {
               login.isAuth
                   ? (
-                      <Route path='/*' element={<UserRoutes />} />
+                      <Route path='/cursos' element={<AppRoutes />} />
                   )
                   : <>
                       <Route path='/login' element={<LoginPage />} />

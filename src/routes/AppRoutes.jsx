@@ -7,7 +7,7 @@ import { UsersPage } from "../pages/UsersPage"
 import { MisCursos } from "../pages/MisCursos"
 import { Sidebar } from "../components/layout/Sidebar"
 
-export const UserRoutes = () => {
+export const AppRoutes = () => {
     return (
         <>
             <UserProvider>
@@ -16,8 +16,8 @@ export const UserRoutes = () => {
                     <Route path="users" element={<UsersPage />} />
                     <Route path="users/register" element={<RegisterPage />} />
                     <Route path="users/edit/:id" element={<RegisterPage />} />
-                    <Route path="MisCursos" element={<MisCursos />} />
-                    <Route path="/" element={<Navigate to="/users" />} />
+                    <Route path="cursos" element={<MisCursos />} />
+                    <Route path="/" element={<Navigate to="/cursos" />} />
                 </Routes>
             </UserProvider>
         </>

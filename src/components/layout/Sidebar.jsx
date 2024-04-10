@@ -1,4 +1,5 @@
 import SidebarMenu from 'react-bootstrap-sidebar-menu';
+import { NavLink } from "react-router-dom";
 import { FaHome, FaBook, FaChartLine, FaCog , FaUserCircle} from 'react-icons/fa';
 
 export const Sidebar = () => {
@@ -12,24 +13,22 @@ export const Sidebar = () => {
         <SidebarMenu.Toggle />
       </SidebarMenu.Header>
       <SidebarMenu.Body>
-        <SidebarMenu.Nav>
-          <SidebarMenu.Nav.Link>
-            <SidebarMenu.Nav.Icon><FaHome /></SidebarMenu.Nav.Icon>
-            <SidebarMenu.Nav.Title>INICIO</SidebarMenu.Nav.Title>
-          </SidebarMenu.Nav.Link>
-          <SidebarMenu.Nav.Link>
-            <SidebarMenu.Nav.Icon><FaBook /></SidebarMenu.Nav.Icon>
-            <SidebarMenu.Nav.Title>CURSOS</SidebarMenu.Nav.Title>
-          </SidebarMenu.Nav.Link>
-          <SidebarMenu.Nav.Link>
-            <SidebarMenu.Nav.Icon><FaChartLine /></SidebarMenu.Nav.Icon>
-            <SidebarMenu.Nav.Title>REPORTES</SidebarMenu.Nav.Title>
-          </SidebarMenu.Nav.Link>
-          <SidebarMenu.Nav.Link>
-            <SidebarMenu.Nav.Icon><FaCog /></SidebarMenu.Nav.Icon>
-            <SidebarMenu.Nav.Title>AJUSTES</SidebarMenu.Nav.Title>
-          </SidebarMenu.Nav.Link>
-        </SidebarMenu.Nav>
+        <NavLink to="/inicio" className="sidebar-menu-nav-link">
+          <FaHome />
+          <span>INICIO</span>
+        </NavLink>
+        <NavLink to="/cursos" className="sidebar-menu-nav-link">
+          <FaBook />
+          <span>CURSOS</span>
+        </NavLink>
+        <NavLink to="/reportes" className="sidebar-menu-nav-link">
+          <FaChartLine />
+          <span>REPORTES</span>
+        </NavLink>
+        <NavLink to="/ajustes" className="sidebar-menu-nav-link">
+          <FaCog />
+          <span>AJUSTES</span>
+        </NavLink>
       </SidebarMenu.Body>
     </SidebarMenu>
   );
