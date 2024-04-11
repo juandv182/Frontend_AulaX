@@ -22,8 +22,15 @@ body {
 .app-container {
   display: flex;
   min-height: 100vh; /* Altura mínima para cubrir la altura de la pantalla */
+  padding-top: 60px; /* Debería ser la altura del TopBar si está presente */
+}
+.app-container.expanded {
+  margin-left: 26rem; /* Ancho del sidebar cuando está expandido */
 }
 
+.app-container.collapsed {
+  margin-left: 8rem; /* Ancho del sidebar cuando está contraído */
+}
 /* Sidebar.css */
 
 /* Aplica el color de fondo al contenedor principal del sidebar */
@@ -35,7 +42,8 @@ body {
   overflow: hidden;
   min-height: 96vh; /* Asegura que el sidebar se extienda a la altura completa de la ventana */
 
-
+  position: fixed;
+  z-index: 100;
 }
 
 /* No necesitas establecer un fondo para el header ya que el .sidebar-menu ya tiene el color */
@@ -94,6 +102,29 @@ body {
       font-size: 1.5rem;
   }
 }
+
+
+.sidebar-menu.expanded {
+  width: 25rem; /* Ancho cuando está expandido */
+  
+}
+
+.sidebar-menu.collapsed {
+  width: 7rem; /* Ancho cuando está colapsado */
+}
+.sidebar-toggle {
+  background: none;
+  border: none;
+  color: white; 
+  cursor: pointer;
+  
+}
+.sidebar-toggle .icon {
+  font-size: 3rem; 
+}
+.sidebar-toggle:focus {
+  outline: none;
+}
 /*Componentes*/
 .top-bar {
   display: flex;
@@ -103,6 +134,8 @@ body {
   align-items: center;
   background-color: var(--azulSecundario); /* Ajusta el color según tu diseño */
   
+  position: fixed;
+  z-index: 10; /* Un valor menor que el del sidebar */
 }
 .top-bar-logo  {
   display: flex;
