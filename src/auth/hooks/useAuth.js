@@ -26,7 +26,7 @@ export const useAuth = () => {
                 isAuth: true,
                 user,
             }));
-            navigate('/MisCursos');
+            navigate('/cursos');
         } else {
             Swal.fire('Error Login', 'Username o password invalidos', 'error');
         }

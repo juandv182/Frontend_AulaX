@@ -1,16 +1,21 @@
-import React from 'react';
-import { FaSignOutAlt, FaBell } from 'react-icons/fa';
+import React, { useContext } from 'react';
+import { IoIosLogOut, IoIosNotificationsOutline } from 'react-icons/io';
 import logo from '../../assets/LOGO.png';
+import { AuthContext } from "../../auth/context/AuthContext";
+
 const TopBar = () => {
+
+const { handlerLogout } = useContext(AuthContext);
   return (
     <div className="top-bar">
       <div className="top-bar-logo">
-      <img src={logo} alt="Logo" className="login-logo" />
+      <img src={logo} alt="Logo"/>
       </div>
-      <div className="top-bar-title">Mis Cursos</div>
       <div className="top-bar-actions">
-        <FaBell className="icon" />
-        <FaSignOutAlt className="icon" />
+      <a onClick={handlerLogout}>
+      <IoIosLogOut className="icon" />
+        </a>
+        <IoIosNotificationsOutline className="icon" />
       </div>
     </div>
   );

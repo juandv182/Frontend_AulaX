@@ -3,6 +3,7 @@
   --oscuro: #212121;
   --primario: #87CEEB;
   --secundario: #537895;
+  --azulSecundario: #009FD2;
   --verde: #8DB600;
   --naranja: #EE931E;
   --amarilloSuave: #FFF4C1;
@@ -22,6 +23,7 @@ body {
   display: flex;
   min-height: 100vh; /* Altura mínima para cubrir la altura de la pantalla */
 }
+
 /* Sidebar.css */
 
 /* Aplica el color de fondo al contenedor principal del sidebar */
@@ -32,6 +34,8 @@ body {
   background-color: var(--secundario); /* El color se aplica a todo el sidebar */
   overflow: hidden;
   min-height: 96vh; /* Asegura que el sidebar se extienda a la altura completa de la ventana */
+
+
 }
 
 /* No necesitas establecer un fondo para el header ya que el .sidebar-menu ya tiene el color */
@@ -94,27 +98,50 @@ body {
 .top-bar {
   display: flex;
   width: 100%;
+  height: 6rem;
   justify-content: space-between;
   align-items: center;
-  background-color: #0047ab; /* Ajusta el color según tu diseño */
+  background-color: var(--azulSecundario); /* Ajusta el color según tu diseño */
   
 }
+.top-bar-logo  {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1; /* Ocupa todo el espacio disponible */
+}
+.top-bar-logo img {
+  height: 7rem; 
+}
 
+
+.top-bar-actions  {
+  color: white; /* Color de los íconos */
+  justify-content: flex-end;
+  font-size: 3rem; /* Tamaño de los íconos */
+  margin-left: 1rem; /* Espaciado entre íconos */
+  cursor: pointer; /* Cambia el cursor al pasar el ratón */
+}
+
+/**/
 .page-title-bar {
-  background-color: var(--verde); /* Ajusta el color según tu diseño */
-  text-align: center;
+  background-color: var(--verde); 
+  text-align: start;
   border-radius: 2rem;
   
 }
-
-.course-card {
+.courses-selection{
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 300px; /* Ajusta el tamaño según tu diseño */
-  height: 150px; /* Ajusta el tamaño según tu diseño */
-  margin: 10px;
-  border-radius: 15px; /* Bordes redondeados */
-  background-color: #f0ad4e; /* Ajusta el color según tu diseño */
-  /* ... más estilos ... */
+}
+.course-card {
+
+  width: 30rem; 
+  height: 30rem; 
+  margin: 1rem;
+  margin-left: 14rem;
+  text-align: center;
+  border-radius: 1.5rem; /* Bordes redondeados */
+  background-color:var(--amarilloSuave); /* Ajusta el color según tu diseño */
+
 }
