@@ -21,8 +21,10 @@ body {
 }
 .app-container {
   display: flex;
-  min-height: 100vh; /* Altura mínima para cubrir la altura de la pantalla */
-  padding-top: 60px; /* Debería ser la altura del TopBar si está presente */
+  flex-direction: column;
+  min-height: 100vh; 
+  padding-top: 60px; 
+  transition: margin-left 0.3s ease;
 }
 .app-container.expanded {
   margin-left: 26rem; /* Ancho del sidebar cuando está expandido */
@@ -46,7 +48,6 @@ body {
   z-index: 100;
 }
 
-/* No necesitas establecer un fondo para el header ya que el .sidebar-menu ya tiene el color */
 
 /* Estilos para la marca del sidebar, por ejemplo, un logotipo o título */
 .sidebar-menu-brand {
@@ -79,9 +80,7 @@ body {
   margin-right: 2rem; /* Margen a la derecha del ícono */
 }
 
-.sidebar-menu-nav-link > span {
-  /* Estilos adicionales para el texto del enlace si es necesario */
-}
+
 .sidebar-menu-nav-link.active {
   background-color: #ab6400; /* Color para el enlace activo */
 }
@@ -112,6 +111,21 @@ body {
 .sidebar-menu.collapsed {
   width: 7rem; /* Ancho cuando está colapsado */
 }
+
+/* Estilos para ocultar texto y mostrar solo íconos cuando el sidebar está contraído */
+.sidebar-menu.collapsed .sidebar-menu-nav-link {
+  justify-content: center; /* Centra el ícono en el botón */
+  padding: 1rem; /* Ajusta el padding para tener un área de clic adecuada */
+}
+
+.sidebar-menu.collapsed .sidebar-menu-nav-link span,
+.sidebar-menu.collapsed .sidebar-menu-nav-link .nav-text {
+  display: none; /* Oculta el texto cuando está contraído */
+}
+
+.sidebar-menu.collapsed .sidebar-menu-nav-link .fa {
+  margin-right: 0; /* Elimina el margen cuando no hay texto */
+}
 .sidebar-toggle {
   background: none;
   border: none;
@@ -140,7 +154,8 @@ body {
 .top-bar-logo  {
   display: flex;
   justify-content: center;
-  flex-grow: 1; /* Ocupa todo el espacio disponible */
+  padding-left: 12rem;
+  flex-grow: 1; 
 }
 .top-bar-logo img {
   height: 7rem; 
@@ -152,13 +167,18 @@ body {
   justify-content: flex-end;
   font-size: 3rem; /* Tamaño de los íconos */
   margin-left: 1rem; /* Espaciado entre íconos */
-  cursor: pointer; /* Cambia el cursor al pasar el ratón */
+  cursor: pointer; 
 }
 
 /**/
 .page-title-bar {
   background-color: var(--verde); 
+  color: white;
+  width: 30rem;
   text-align: start;
+  margin-left: 1.5rem;
+  padding-left: 2rem;
+  font-size: 1.5rem;
   border-radius: 2rem;
   
 }
@@ -166,15 +186,32 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
 }
 .course-card {
-
+  display: flex;
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
   width: 30rem; 
   height: 30rem; 
   margin: 1rem;
-  margin-left: 14rem;
+  
   text-align: center;
-  border-radius: 1.5rem; /* Bordes redondeados */
-  background-color:var(--amarilloSuave); /* Ajusta el color según tu diseño */
+  border-radius: 1.5rem;
+  background-color:var(--amarilloSuave); 
+  color: black;
 
+}
+
+.course-card .text-dark {
+  color: black !important; 
+  
+}
+.course-card:hover {
+  transform: scale(1.05); 
+}
+.course-card span {
+  margin-left: 1rem; 
 }

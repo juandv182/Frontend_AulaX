@@ -1,4 +1,5 @@
-
+import { TbMathSymbols } from "react-icons/tb";
+import { GiMaterialsScience } from "react-icons/gi";
 export const MisCursos = () => {
 return(
         <div>
@@ -8,15 +9,16 @@ return(
           </div>
           <div className="courses-selection">
             
-            <div className="course-card">
-              <h2>Matemáticas</h2>
-              
-            </div>
-            <div className="course-card">
-              <h2>Ciencia y Tecnologia</h2>
-              
-            </div>
+            <button className="course-card btn btn-light btn-lg d-flex align-items-center justify-content-center text-dark">
+            <TbMathSymbols size={80} className="text-dark"/> {/* Asegúrate de ajustar el tamaño del ícono según sea necesario */}
+            <span>Matemáticas</span>
+            </button>
+            <button className="course-card btn btn-light btn-lg d-flex align-items-center justify-content-center text-dark">
+            <GiMaterialsScience size={80} className="text-dark"/> {/* Asegúrate de ajustar el tamaño del ícono según sea necesario */}
+            <span>Ciencia y Tecnología</span>
+            </button>
           </div>
+
         </div>
       );
 
