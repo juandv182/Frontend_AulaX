@@ -1,22 +1,25 @@
 import { TbMathSymbols } from "react-icons/tb";
 import { GiMaterialsScience } from "react-icons/gi";
+import { TituloPorPagina } from "../components/layout/TituloPorPagina";
+import { NavLink } from "react-router-dom";
+import nino from '../assets/niño.png';
+import nina from '../assets/niña.png';
 export const MisCursos = () => {
 return(
         <div>
-          
-          <div className="page-title-bar">
-            <h1>Mis Cursos</h1>
-          </div>
+          <TituloPorPagina
+          titulo="Mis Cursos"/>
           <div className="courses-selection">
-            
-            <button className="course-card btn btn-light btn-lg d-flex align-items-center justify-content-center text-dark">
-            <TbMathSymbols size={80} className="text-dark"/> {/* Asegúrate de ajustar el tamaño del ícono según sea necesario */}
-            <span>Matemáticas</span>
-            </button>
-            <button className="course-card btn btn-light btn-lg d-flex align-items-center justify-content-center text-dark">
-            <GiMaterialsScience size={80} className="text-dark"/> {/* Asegúrate de ajustar el tamaño del ícono según sea necesario */}
-            <span>Ciencia y Tecnología</span>
-            </button>
+          <img src={nino}  alt="Decoración inferior izquierda" className="bottom-left-image" />
+          <img src={nina} alt="Decoración superior derecha" className="top-right-image" />
+            <NavLink to="/cursos/matematicas" className="course-card btn btn-light btn-lg d-flex align-items-center justify-content-center text-dark">
+              <TbMathSymbols size={80} className="text-dark"/> 
+              <h2>Matemáticas</h2>
+            </NavLink>
+            <NavLink to="/cursos/ciencias" className="course-card btn btn-light btn-lg d-flex align-items-center justify-content-center text-dark">
+              <GiMaterialsScience size={80} className="text-dark"/> 
+              <h2>Ciencia y Tecnología</h2>
+            </NavLink>
           </div>
 
         </div>

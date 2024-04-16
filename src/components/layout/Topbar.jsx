@@ -13,9 +13,9 @@ const { handlerLogout } = useContext(AuthContext);
       </div>
       <div className="top-bar-actions">
       <a onClick={handlerLogout}>
-      <IoIosLogOut className="icon" />
+      <IoIosLogOut size={40} className="icon" />
         </a>
-        <IoIosNotificationsOutline className="icon" />
+        <IoIosNotificationsOutline size={40} className="icon" />
       </div>
     </div>
   );

@@ -14,28 +14,28 @@ export const Sidebar = () => {
     <SidebarMenu className={isExpanded ? 'expanded' : 'collapsed'}>
       <SidebarMenu.Header>
         <SidebarMenu.Brand>
-          <FaUserCircle/>
+          <FaUserCircle size={50} className='my-3'/>
           <div>¡Hola Carlos! E173037</div>
         </SidebarMenu.Brand>
         <SidebarMenu.Toggle className="sidebar-toggle" onClick={toggleSidebar}>
-          <FaBars className="icon" /> {/* Establece el tamaño del ícono aquí */}
+          <FaBars className="icon" /> 
         </SidebarMenu.Toggle>
       </SidebarMenu.Header>
       <SidebarMenu.Body>
         <NavLink to="/inicio" className="sidebar-menu-nav-link">
-          <FaHome />
+          <FaHome size={25} className="icon" />
           <span>INICIO</span>
         </NavLink>
         <NavLink to="/cursos" className="sidebar-menu-nav-link">
-          <FaBook />
+          <FaBook size={25} className="icon"/>
           <span>CURSOS</span>
         </NavLink>
         <NavLink to="/reportes" className="sidebar-menu-nav-link">
-          <FaChartLine />
+          <FaChartLine size={25} className="icon"/>
           <span>REPORTES</span>
         </NavLink>
         <NavLink to="/ajustes" className="sidebar-menu-nav-link">
-          <FaCog />
+          <FaCog size={25} className="icon"/>
           <span>AJUSTES</span>
         </NavLink>
       </SidebarMenu.Body>
