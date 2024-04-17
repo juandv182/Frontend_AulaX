@@ -19,7 +19,8 @@ html {
 }
 body {
   font-size: 16px; /* 1rem = 10px */
-  background-color: var(--primario);
+  background: rgb(179,223,242);
+  background: radial-gradient(circle, rgb(192, 231, 248) 55%, rgba(135,206,235,1) 100%);
 }
 h1{
   font-family: var(--fontPrimaria);
@@ -37,11 +38,11 @@ h2{
   transition: margin-left 0.3s ease;
 }
 .app-container.expanded {
-  margin-left: 26rem; /* Ancho del sidebar cuando está expandido */
+  margin-left: 27rem; /* Ancho del sidebar cuando está expandido */
 }
 
 .app-container.collapsed {
-  margin-left: 7rem; /* Ancho del sidebar cuando está contraído */
+  margin-left: 8.5rem; /* Ancho del sidebar cuando está contraído */
 }
 /* Sidebar.css */
 
@@ -50,7 +51,7 @@ h2{
   border-radius: 1.5rem;
   margin: 1rem;
   width: 25rem; /* Ajusta según tus necesidades */
-  background-color: var(--secundario); /* El color se aplica a todo el sidebar */
+  background:  linear-gradient(90deg, #275767, var(--secundario));
   overflow: hidden;
   min-height: 96vh; /* Asegura que el sidebar se extienda a la altura completa de la ventana */
 
@@ -185,12 +186,12 @@ h2{
 
 /**/
 .page-title-bar {
-  background-color: var(--verde);
+  background: linear-gradient( var(--verde) , #add42c) ;
   font-family: var(--fontPrimaria);
   font-size: 0.8rem;
   font-weight: bolder;
   color: white;
-  width: 40rem;
+  width: 30%;
   text-align: start;
   margin: 2rem;
   padding: 0rem 2rem; 
@@ -254,4 +255,35 @@ h2{
   height: auto;
   /* Asegúrate de que no estorben a los elementos interactivos */
   z-index: -1;
+}
+/* */
+.biblioteca-recursos {
+  padding: 1rem;
+}
+
+.competencias-selector {
+  display: flex;
+  justify-content: start;
+  margin-bottom: 1rem;
+  background-color: var(--amarilloSuave); /* Usa el color amarillo de tu paleta */
+  border-radius: 1rem; /* Bordes redondeados para el contenedor */
+  padding: 0.5rem; /* Espaciado interno del contenedor */
+  border: 1px solid #ffd700; /* Borde del color que necesites */
+}
+
+.competencia-btn {
+  border: none; /* Elimina el borde del botón */
+  background: none; /* Fondo transparente para el botón */
+  color: #000; /* Texto negro para el botón */
+  margin: 0.5rem; /* Espaciado alrededor de cada botón */
+  padding: 0.5rem 1rem; /* Espaciado interno de cada botón */
+  border-radius: 0.5rem; /* Bordes redondeados para cada botón */
+  font-weight: bold; /* Fuente en negrita para el texto del botón */
+  cursor: pointer; /* Cursor de tipo puntero */
+  transition: background-color 0.2s; /* Transición suave para el efecto de hover */
+}
+
+.competencia-btn:hover {
+  background-color: var(--amarilloSuave); /* Color al pasar el cursor sobre el botón */
+  text-decoration: none; /* No subrayado */
 }

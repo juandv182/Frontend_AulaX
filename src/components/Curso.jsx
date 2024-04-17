@@ -11,7 +11,7 @@ export const Curso = () =>{
     return (
         <div>
           <div className="d-flex align-items-center justify-content-start">
-                <button onClick={() => navigate("/cursos")} type='button' className='btn btn-link ps-4'>
+                <button onClick={() => navigate(-1)} type='button' className='btn btn-link ps-4'>
                     <RiArrowGoBackLine size={27} />
                 </button>
                 <TituloPorPagina titulo="Mis Cursos" />
@@ -20,7 +20,7 @@ export const Curso = () =>{
           <div className="courses-selection">
           <img src={nino}  alt="Decoración inferior izquierda" className="bottom-left-image" />
           <img src={nina} alt="Decoración superior derecha" className="top-right-image" />
-            <button to="/curso/matematicas" className="course-card btn btn-light btn-lg d-flex align-items-center justify-content-center text-dark">
+            <button onClick={()=> navigate(`/cursos/${tipoCurso}/biblioteca`)}to="/curso/matematicas" className="course-card btn btn-light btn-lg d-flex align-items-center justify-content-center text-dark">
                 <IoLibraryOutline size={80} className="text-dark" />
               <h2>Biblioteca de Recursos</h2>
             </button>

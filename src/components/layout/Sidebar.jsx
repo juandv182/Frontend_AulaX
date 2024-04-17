@@ -15,7 +15,7 @@ export const Sidebar = () => {
       <SidebarMenu.Header>
         <SidebarMenu.Brand>
           <FaUserCircle size={50} className='my-3'/>
-          <div>¡Hola Carlos! E173037</div>
+          <div>¡Bienvenido Carlos!</div>
         </SidebarMenu.Brand>
         <SidebarMenu.Toggle className="sidebar-toggle" onClick={toggleSidebar}>
           <FaBars className="icon" /> 

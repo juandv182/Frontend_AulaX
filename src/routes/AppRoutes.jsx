@@ -10,6 +10,7 @@ import { SidebarContext } from "../context/SidebarContext"
 import { useContext } from "react"
 import { Inicio } from "../pages/Inicio"
 import { Curso } from "../components/Curso"
+import { BibliotecaRecursos } from "../components/BibliotecaRecursos"
 
 export const AppRoutes = () => {
     const { isExpanded } = useContext(SidebarContext);
@@ -28,6 +29,7 @@ export const AppRoutes = () => {
                     <Route path="inicio" element={<Inicio />} />
                     <Route path="cursos" element={<MisCursos />} />
                     <Route path="/cursos/:tipoCurso" element={<Curso />} />
+                    <Route path="/cursos/:tipoCurso/biblioteca" element={<BibliotecaRecursos />} />
                     <Route path="/" element={<Navigate to="/cursos" />} />
                 </Routes>
             </div>
