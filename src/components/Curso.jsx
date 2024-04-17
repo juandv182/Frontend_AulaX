@@ -16,7 +16,7 @@ export const Curso = () =>{
                 </button>
                 <TituloPorPagina titulo="Mis Cursos" />
           </div>
-          <h1 className='ms-5'> {tipoCurso==="matematicas"?"Matemáticas" : "Ciencia y Tecnología"}</h1>
+          <h1 className='m-1 ms-5'> {tipoCurso==="matematicas"?"Matemáticas" : "Ciencia y Tecnología"}</h1>
           <div className="courses-selection">
           <img src={nino}  alt="Decoración inferior izquierda" className="bottom-left-image" />
           <img src={nina} alt="Decoración superior derecha" className="top-right-image" />
