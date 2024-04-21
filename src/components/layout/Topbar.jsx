@@ -10,6 +10,7 @@ const { handlerLogout } = useContext(AuthContext);
     <div className="top-bar">
       <div className="top-bar-logo">
       <img src={logo} alt="Logo"/>
+      
       </div>
       <div className="top-bar-actions">
       <a onClick={handlerLogout}>

@@ -12,7 +12,16 @@ const preguntasDeLaEncuesta = [
       { texto: "Realizar actividades prácticas o experimentos.", tipo: "Kinestésico" },
     ],
   },
-  // Pregunta 2 y así sucesivamente...
+  // Pregunta 2 
+  {
+    texto: "Recuerdo mejor la información cuando:",
+    opciones: [
+      { texto: "Ver videos o imágenes que expliquen el tema.", tipo: "Visual" },
+      { texto: "Escuchar explicaciones o audiolibros.", tipo: "Auditivo" },
+      { texto: "Leer textos o instrucciones escritas.", tipo: "Lector/Escritor" },
+      { texto: "Realizar actividades prácticas o experimentos.", tipo: "Kinestésico" },
+    ],
+  },
 ];
 
 export const EncuestaModal = ({ show, handleClose }) => {
@@ -24,7 +33,7 @@ export const EncuestaModal = ({ show, handleClose }) => {
     if(paginaActual < preguntasDeLaEncuesta.length - 1) {
       setPaginaActual(p => p + 1);
     } else {
-      // Aquí manejarías el envío de las respuestas
+
       handleClose();
     }
   };

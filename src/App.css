@@ -19,8 +19,7 @@ html {
 }
 body {
   font-size: 16px; /* 1rem = 10px */
-  background: rgb(179,223,242);
-  background: radial-gradient(circle, rgb(192, 231, 248) 55%, rgba(135,206,235,1) 100%);
+  background-color:#bcebfe;
 }
 h1{
   font-family: var(--fontPrimaria);
@@ -34,7 +33,7 @@ h2{
   display: flex;
   flex-direction: column;
   min-height: 100vh; 
-  padding-top: 60px; 
+  padding-top: 6rem; 
   transition: margin-left 0.3s ease;
 }
 .app-container.expanded {
@@ -51,7 +50,7 @@ h2{
   border-radius: 1.5rem;
   margin: 1rem;
   width: 25rem; /* Ajusta según tus necesidades */
-  background:  linear-gradient(90deg, #275767, var(--secundario));
+  background:  linear-gradient(90deg, #4f90a4, var(--secundario));
   overflow: hidden;
   min-height: 96vh; /* Asegura que el sidebar se extienda a la altura completa de la ventana */
 
@@ -84,7 +83,7 @@ h2{
 
 /* Efecto al pasar el mouse sobre los botones */
 .sidebar-menu-nav-link:hover {
-  background-color: #ab6400; /* Un naranja más oscuro al pasar el mouse */
+  background-color: #b56d08; /* Un naranja más oscuro al pasar el mouse */
 }
 
 /* Ajusta estos estilos para manejar cómo quieres que los iconos y textos se vean y alineen */
@@ -94,7 +93,7 @@ h2{
 
 
 .sidebar-menu-nav-link.active {
-  background-color: #ab6400; /* Color para el enlace activo */
+  background-color: #b56d08; /* Color para el enlace activo */
 }
 /* Responsividad: Ajustes para pantallas más pequeñas */
 @media (max-width: 768px) {
@@ -123,6 +122,7 @@ h2{
 
 .sidebar-menu.collapsed {
   width: 7rem; /* Ancho cuando está colapsado */
+  
 }
 
 /* Estilos para ocultar texto y mostrar solo íconos cuando el sidebar está contraído */
@@ -156,7 +156,7 @@ h2{
 .top-bar {
   display: flex;
   width: 100%;
-  height: 7rem;
+  height: 7.5rem;
   justify-content: space-between;
   align-items: center;
   background-color: var(--azulSecundario); /* Ajusta el color según tu diseño */
@@ -167,12 +167,12 @@ h2{
 .top-bar-logo  {
   display: flex;
   justify-content: center;
-  padding-left: 12rem;
+  padding-left: 18rem;
   flex-grow: 1; 
 }
 .top-bar-logo img {
-  height: 8rem; 
-  width: rem;
+  height: 8.7rem; 
+  width: 9.5rem;
 }
 
 
@@ -186,7 +186,7 @@ h2{
 
 /**/
 .page-title-bar {
-  background: linear-gradient( var(--verde) , #add42c) ;
+  background: linear-gradient( var(--verde) , #7e9c1c) ;
   font-family: var(--fontPrimaria);
   font-size: 0.8rem;
   font-weight: bolder;
@@ -239,8 +239,7 @@ h2{
   position: absolute;
   left: 0;
   bottom: 0;
-  /* Ajusta el tamaño según sea necesario */
-  width: 15rem; /* Ejemplo */
+  width: 19rem; 
   height: auto;
   /* Asegúrate de que no estorben a los elementos interactivos */
   z-index: -1;
@@ -250,13 +249,13 @@ h2{
   position: absolute;
   right: 0;
   top: 0;
-  /* Ajusta el tamaño según sea necesario */
-  width: 15rem; /* Ejemplo */
+  width: 19rem; /* Ejemplo */
   height: auto;
   /* Asegúrate de que no estorben a los elementos interactivos */
   z-index: -1;
 }
 /* */
+
 .biblioteca-recursos {
   padding: 1rem;
 }
@@ -269,6 +268,7 @@ h2{
   border-radius: 1rem; /* Bordes redondeados para el contenedor */
   padding: 0.5rem; /* Espaciado interno del contenedor */
   border: 1px solid #ffd700; /* Borde del color que necesites */
+  margin-right: 1rem;
 }
 
 .competencia-btn {
@@ -282,8 +282,29 @@ h2{
   cursor: pointer; /* Cursor de tipo puntero */
   transition: background-color 0.2s; /* Transición suave para el efecto de hover */
 }
+.competencia-btn.active {
+
+  color: red; /* Texto blanco para contraste */
+  border-color: #0056b3; /* Borde más oscuro para mayor profundidad */
+  font-weight: bold; /* Negrita para destacar */
+}
 
 .competencia-btn:hover {
   background-color: var(--amarilloSuave); /* Color al pasar el cursor sobre el botón */
   text-decoration: none; /* No subrayado */
+}
+.custom-table {
+  background-color: #ffffff; /* Fondo blanco para la tabla */
+  color: #333; 
+}
+.custom-table thead th {
+  background-color: #f0f0f0; /* Fondo claro para los encabezados de la tabla */
+}
+
+.custom-table tbody tr:hover {
+  background-color: #f9f9f9; /* Fondo al pasar el mouse */
+}
+
+.custom-table td, .custom-table th {
+  border-color: #dee2e6; /* Color de borde sutil */
 }

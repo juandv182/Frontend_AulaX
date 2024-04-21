@@ -8,6 +8,7 @@ import nina from '../assets/niña.png';
 export const Curso = () =>{
     const { tipoCurso } = useParams();
     const navigate = useNavigate();
+
     return (
         <div>
           <div className="d-flex align-items-center justify-content-start">
@@ -16,18 +17,19 @@ export const Curso = () =>{
                 </button>
                 <TituloPorPagina titulo="Mis Cursos" />
           </div>
-          <h1 className='m-1 ms-5'> {tipoCurso==="matematicas"?"Matemáticas" : "Ciencia y Tecnología"}</h1>
+          <h1 className='m-1 ms-5 text-primary'> {tipoCurso==="matematicas"?"Matemáticas" : "Ciencia y Tecnología"}</h1>
+          <h2 className='ms-5 display-7 fw-light'>Seleccione si desea ver la biblioteca con todos los recursos educativos o si desea saber su nivel y recomendarte recursos</h2>
           <div className="courses-selection">
           <img src={nino}  alt="Decoración inferior izquierda" className="bottom-left-image" />
           <img src={nina} alt="Decoración superior derecha" className="top-right-image" />
-            <button onClick={()=> navigate(`/cursos/${tipoCurso}/biblioteca`)}to="/curso/matematicas" className="course-card btn btn-light btn-lg d-flex align-items-center justify-content-center text-dark">
-                <IoLibraryOutline size={80} className="text-dark" />
-              <h2>Biblioteca de Recursos</h2>
+            <button onClick={()=> navigate(`/cursos/${tipoCurso}/biblioteca`)} className="course-card btn btn-light btn-lg d-flex align-items-center justify-content-center text-dark">
+                <IoLibraryOutline size={100} className="text-dark" />
+              <h2 className='display-1'>Biblioteca de Recursos</h2>
             </button>
-            <NavLink to="/curso/ciencias" className="course-card btn btn-light btn-lg d-flex align-items-center justify-content-center text-dark">
-            <LiaChalkboardTeacherSolid size={80} className="text-dark"/>
-              <h2>Modo Adaptativo</h2>
-            </NavLink>
+            <button onClick={()=> navigate(`/cursos/${tipoCurso}/cuestionarioNivelCurso`)} className="course-card btn btn-light btn-lg d-flex align-items-center justify-content-center text-dark">
+            <LiaChalkboardTeacherSolid size={100} className="text-dark"/>
+              <h2 className='display-1'>Modo Adaptativo</h2>
+            </button>
           </div>
 
         </div>
