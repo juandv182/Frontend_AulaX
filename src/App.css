@@ -83,7 +83,7 @@ h2{
 
 /* Efecto al pasar el mouse sobre los botones */
 .sidebar-menu-nav-link:hover {
-  background-color: #b56d08; /* Un naranja más oscuro al pasar el mouse */
+  background-color: var(--azulSecundario); /* Un naranja más oscuro al pasar el mouse */
 }
 
 /* Ajusta estos estilos para manejar cómo quieres que los iconos y textos se vean y alineen */
@@ -93,7 +93,7 @@ h2{
 
 
 .sidebar-menu-nav-link.active {
-  background-color: #b56d08; /* Color para el enlace activo */
+  background-color: var(--azulSecundario); /* Color para el enlace activo */
 }
 /* Responsividad: Ajustes para pantallas más pequeñas */
 @media (max-width: 768px) {
@@ -292,13 +292,14 @@ h2{
 .competencia-btn:hover {
   background-color: var(--amarilloSuave); /* Color al pasar el cursor sobre el botón */
   text-decoration: none; /* No subrayado */
+  
 }
 .custom-table {
   background-color: #ffffff; /* Fondo blanco para la tabla */
   color: #333; 
 }
 .custom-table thead th {
-  background-color: #f0f0f0; /* Fondo claro para los encabezados de la tabla */
+  background-color: #c6c2c2; /* Fondo claro para los encabezados de la tabla */
 }
 
 .custom-table tbody tr:hover {
