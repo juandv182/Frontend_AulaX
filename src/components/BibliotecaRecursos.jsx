@@ -55,7 +55,7 @@ export const BibliotecaRecursos = () => {
     }
 
     return (
-        <div className="biblioteca-container">
+        <div >
           <div className="d-flex align-items-center justify-content-start">
                 <button onClick={() => navigate(-1)} type='button' className='btn btn-link ps-4'>
                     <RiArrowGoBackLine size={27} />
@@ -93,7 +93,8 @@ export const BibliotecaRecursos = () => {
                             <td>{tema.learningUnit.name}</td>
                             <td>{tema.status ? 'Completado' : 'En Progreso'}</td>
                             <td>
-                                <NavLink to={`/contenido/${tema.id}`}>Ver Contenido</NavLink>
+                  
+                                <NavLink to={`recursosPorTema/${tema.id}`}>Ver Contenido</NavLink>
                             </td>
                         </tr>
                     ))}

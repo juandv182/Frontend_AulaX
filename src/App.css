@@ -287,6 +287,7 @@ h2{
   color: red; /* Texto blanco para contraste */
   border-color: #0056b3; /* Borde más oscuro para mayor profundidad */
   font-weight: bold; /* Negrita para destacar */
+
 }
 
 .competencia-btn:hover {
@@ -297,15 +298,15 @@ h2{
 .custom-table {
   background-color: #ffffff; /* Fondo blanco para la tabla */
   color: #333; 
+  
+  border-radius: 2.5rem;
 }
 .custom-table thead th {
   background-color: #c6c2c2; /* Fondo claro para los encabezados de la tabla */
+  
 }
 
 .custom-table tbody tr:hover {
   background-color: #f9f9f9; /* Fondo al pasar el mouse */
 }
 
-.custom-table td, .custom-table th {
-  border-color: #dee2e6; /* Color de borde sutil */
-}

@@ -12,6 +12,7 @@ import { Inicio } from "../pages/Inicio"
 import { Curso } from "../components/Curso"
 import { BibliotecaRecursos } from "../components/BibliotecaRecursos"
 import { CuestionarioNivelCurso } from "../components/CuestionarioNivelCurso"
+import { RecursosPorTema } from "../components/RecursosPorTema"
 
 export const AppRoutes = () => {
     const { isExpanded } = useContext(SidebarContext);
@@ -31,6 +32,7 @@ export const AppRoutes = () => {
                     <Route path="cursos" element={<MisCursos />} />
                     <Route path="/cursos/:tipoCurso" element={<Curso />} />
                     <Route path="/cursos/:tipoCurso/biblioteca" element={<BibliotecaRecursos />} />
+                    <Route path="/cursos/:tipoCurso/biblioteca/recursosPorTema/:temaId" element={<RecursosPorTema />} />
                     <Route path="/cursos/:tipoCurso/cuestionarioNivelCurso" element={<CuestionarioNivelCurso />} />
                     <Route path="/" element={<Navigate to="/cursos" />} />
                 </Routes>
