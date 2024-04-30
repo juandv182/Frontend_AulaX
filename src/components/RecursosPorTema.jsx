@@ -19,7 +19,11 @@ export const RecursosPorTema = () => {
             .then(filesResponse => ({
               ...recurso,
               files: filesResponse.data
-            }));
+            }
+         
+        )
+        );
+
         });
         Promise.all(fetchFiles).then(results => setRecursos(results));
       })
@@ -51,12 +55,8 @@ export const RecursosPorTema = () => {
                 <td>
                     {recurso.files.map((file) => (
                     <div key={file.id}>
-                    <NavLink to={{
-                                pathname: `ver-pdf/${file.id}`,
-                                state: {
-                                    temaUrl: file.url
-                                }
-                            }}>{file.name} {file.url}</NavLink>
+                    <NavLink to={`ver-pdf/${file.id}`}
+                    state={`${file.url}`} >{file.name} {file.url}</NavLink>
                     </div>
                     ))}
                 </td>
