@@ -51,7 +51,12 @@ export const RecursosPorTema = () => {
                 <td>
                     {recurso.files.map((file) => (
                     <div key={file.id}>
-                       <NavLink to={`ver-pdf/${file.id}`}>{file.name}</NavLink>
+                    <NavLink to={{
+                                pathname: `ver-pdf/${file.id}`,
+                                state: {
+                                    temaUrl: file.url
+                                }
+                            }}>{file.name} {file.url}</NavLink>
                     </div>
                     ))}
                 </td>

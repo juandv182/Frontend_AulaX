@@ -1,13 +1,14 @@
-import { useParams } from 'react-router-dom';
-import { Document, Page } from 'react-pdf';
-
+import { useParams , useLocation } from 'react-router-dom';
+import { Document, Page , pdfjs } from 'react-pdf';
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 export const VisualizadorPDF = () => {
-  const { fileId } = useParams();
-  const fileUrl = "https://aulax.s3.amazonaws.com/1/Diagrama+de+Base+de+Datos.drawio-1+(4).pdf";
-
+    const location = useLocation();
+    const temaUrl = location.state?.temaUrl;
+   
   return (
     <div>
-      <Document file={fileUrl}>
+        <h1>{temaUrl} aaaaaa</h1>
+      <Document file={temaUrl}>
         <Page pageNumber={1} />
       </Document>
     </div>
