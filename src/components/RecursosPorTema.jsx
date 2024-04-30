@@ -51,7 +51,7 @@ export const RecursosPorTema = () => {
                 <td>
                     {recurso.files.map((file) => (
                     <div key={file.id}>
-                        <NavLink to={file.url} target="_blank">{file.name}</NavLink>
+                       <NavLink to={`ver-pdf/${file.id}`}>{file.name}</NavLink>
                     </div>
                     ))}
                 </td>
