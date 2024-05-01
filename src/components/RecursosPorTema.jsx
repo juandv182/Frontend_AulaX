@@ -29,7 +29,14 @@ export const RecursosPorTema = () => {
       })
       .catch(error => console.error('Error fetching resources:', error));
   }, [temaId]);
-
+  const handleFileClick = (file) => {
+    if (file.url.includes('.pdf')) {
+        navigate(`ver-pdf/${file.id}`, { state:file.url});
+    } else if (file.url.includes('youtube')) {
+        const videoId = new URLSearchParams(new URL(file.url).search).get('v');
+        navigate(`video-viewer/${videoId}`);
+    }
+  };
   return (
     <div>
         <div className="d-flex align-items-center justify-content-start">
@@ -53,12 +60,11 @@ export const RecursosPorTema = () => {
                 <td>{recurso.name}</td>
                 <td>{recurso.description}</td>
                 <td>
-                    {recurso.files.map((file) => (
-                    <div key={file.id}>
-                    <NavLink to={`ver-pdf/${file.id}`}
-                    state={`${file.url}`} >{file.name} {file.url}</NavLink>
+                {recurso.files.map((file) => (
+                    <div key={file.id} onClick={() => handleFileClick(file)} style={{ cursor: 'pointer', textDecoration: 'underline', color: 'blue' }}>
+                        {file.name}{file.url}
                     </div>
-                    ))}
+                ))}
                 </td>
                 </tr>
             ))}

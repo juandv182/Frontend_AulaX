@@ -310,3 +310,25 @@ h2{
   background-color: #f9f9f9; /* Fondo al pasar el mouse */
 }
 
+.react-pdf__Page__canvas {
+  width: 100%;
+  height: auto;
+}
+
+.react-pdf__Page__textContent {
+  width: 100%;
+  display: block;
+  position: relative;
+}
+
+
+.react-pdf__Page__textContent span {
+  position: absolute;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.pdf-container {
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+}
