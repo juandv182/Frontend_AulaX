@@ -35,6 +35,12 @@ export const RecursosPorTema = () => {
     } else if (file.url.includes('youtube')) {
         const videoId = new URLSearchParams(new URL(file.url).search).get('v');
         navigate(`video-viewer/${videoId}`);
+    }else if (file.url.includes('.html')) {
+        navigate(`webgl-viewer/${file.id}`, { state: file.url });
+    } else if (file.url.includes('scratch.mit.edu')) {
+        const scratchId = file.url.split('/').pop();
+        console.log(scratchId)
+        navigate(`scratch-viewer/${scratchId}`);
     }
   };
   return (

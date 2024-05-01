@@ -15,6 +15,8 @@ import { CuestionarioNivelCurso } from "../components/CuestionarioNivelCurso"
 import { RecursosPorTema } from "../components/RecursosPorTema"
 import { VisualizadorPDF } from "../components/VisualizadorPDF"
 import { VideoViewer } from "../components/VideoViewer"
+import { ScratchViewer } from "../components/ScratchViewer"
+import { WebGLViewer } from "../components/WebGLViewer"
 
 export const AppRoutes = () => {
     const { isExpanded } = useContext(SidebarContext);
@@ -37,6 +39,8 @@ export const AppRoutes = () => {
                     <Route path="/cursos/:tipoCurso/biblioteca/recursosPorTema/:temaId" element={<RecursosPorTema />} />
                     <Route path="/cursos/:tipoCurso/biblioteca/recursosPorTema/:temaId/ver-pdf/:fileId" element={<VisualizadorPDF />} />
                     <Route path="/cursos/:tipoCurso/biblioteca/recursosPorTema/:temaId/video-viewer/:videoId" element={<VideoViewer />} />
+                    <Route path="/cursos/:tipoCurso/biblioteca/recursosPorTema/:temaId/webgl-viewer/:file.id" element={<WebGLViewer />} />
+                    <Route path="/cursos/:tipoCurso/biblioteca/recursosPorTema/:temaId/scratch-viewer/:scratchId" element={<ScratchViewer />} />
                     <Route path="/cursos/:tipoCurso/cuestionarioNivelCurso" element={<CuestionarioNivelCurso />} />
                     <Route path="/" element={<Navigate to="/cursos" />} />
                 </Routes>
