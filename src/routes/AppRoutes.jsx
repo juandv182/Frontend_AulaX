@@ -19,6 +19,7 @@ import { ScratchViewer } from "../components/ScratchViewer"
 import { WebGLViewer } from "../components/WebGLViewer"
 import { Reportes } from "../pages/Reportes"
 import { Ajustes } from "../pages/Ajustes"
+import { ModoAdaptativo } from "../components/ModoAdaptativo"
 
 export const AppRoutes = () => {
     const { isExpanded } = useContext(SidebarContext);
@@ -45,7 +46,8 @@ export const AppRoutes = () => {
                     <Route path="/cursos/:tipoCurso/biblioteca/recursosPorTema/:temaId/video-viewer/:videoId" element={<VideoViewer />} />
                     <Route path="/cursos/:tipoCurso/biblioteca/recursosPorTema/:temaId/webgl-viewer/:fileId" element={<WebGLViewer />} />
                     <Route path="/cursos/:tipoCurso/biblioteca/recursosPorTema/:temaId/scratch-viewer/:scratchId" element={<ScratchViewer />} />
-                    <Route path="/cursos/:tipoCurso/cuestionarioNivelCurso" element={<CuestionarioNivelCurso />} />
+                    <Route path="/cursos/:tipoCurso/modoAdaptativo" element={<ModoAdaptativo />} />
+                    <Route path="/cursos/:tipoCurso/modoAdaptativo/cuestionarioNivelCurso" element={<CuestionarioNivelCurso />} />
                     <Route path="/" element={<Navigate to="/cursos" />} />
                 </Routes>
             </div>
