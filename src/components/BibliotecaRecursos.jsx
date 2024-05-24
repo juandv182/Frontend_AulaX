@@ -83,7 +83,6 @@ export const BibliotecaRecursos = () => {
                         <th>Unidad</th>
                         <th>Progreso</th>
                         <th>Contenido</th>
-                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -38,9 +38,13 @@ export const RecursosPorTema = () => {
     }else if (file.url.includes('.html')) {
         navigate(`webgl-viewer/${file.id}`, { state: file.url });
     } else if (file.url.includes('scratch.mit.edu')) {
-        const scratchId = file.url.split('/').pop();
-        console.log(scratchId)
-        navigate(`scratch-viewer/${scratchId}`);
+        const urlParts = file.url.split('/');
+        const scratchId = urlParts[urlParts.length - 2]; // Asumiendo que el ID siempre es el penúltimo segmento
+        if (scratchId && !isNaN(scratchId)) {
+            navigate(`scratch-viewer/${scratchId}`);
+        } else {
+            console.error('Invalid Scratch project ID:', scratchId);
+        }
     }
   };
   return (
@@ -68,7 +72,7 @@ export const RecursosPorTema = () => {
                 <td>
                 {recurso.files.map((file) => (
                     <div key={file.id} onClick={() => handleFileClick(file)} style={{ cursor: 'pointer', textDecoration: 'underline', color: 'blue' }}>
-                        {file.name}{file.url}
+                        {file.name}
                     </div>
                 ))}
                 </td>

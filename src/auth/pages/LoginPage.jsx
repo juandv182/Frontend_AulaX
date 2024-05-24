@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../context/AuthContext";
 import '../Login.css'
+import { Link } from "react-router-dom";
 import logo from '../../assets/LOGO.png';
 
 const initialLoginForm = {
@@ -29,8 +30,6 @@ export const LoginPage = () => {
         if (!username || !password) {
             Swal.fire('Error de validacion', 'Username y password requeridos', 'error');
         }
-
-        // aca implementamos el login
         handlerLogin({username, password});
         
         setLoginForm(initialLoginForm);
@@ -69,7 +68,7 @@ export const LoginPage = () => {
                         type="submit">
                         Iniciar Sesión
                     </button>
-                    <p>¿No tiene una cuenta? <a href="#" className="link">Regístrese</a></p>
+                    <p>¿No tiene una cuenta? <Link to="/register">Regístrese</Link></p>
                 </form>
             </div>
         </div>

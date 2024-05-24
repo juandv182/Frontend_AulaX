@@ -76,3 +76,39 @@
     height: auto;
     padding-bottom: 2rem; 
 }
+
+/* src/styles/RegisterPage.css */
+.register-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75%;
+    width: 100%;
+    background-color: var(--primario);
+    font-family: "Baloo 2", sans-serif;
+}
+
+.register-page .form-container {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    width: 80%;
+    max-width: 800px;
+}
+
+.register-page .form-container img {
+    width: 100px;
+}
+
+.register-page .form-container h2 {
+    margin-bottom: 20px;
+}
+
+.register-page .form-container .btn {
+    width: 100%;
+}
+
+.register-page .form-container .login-link {
+    color: blue;
+    cursor: pointer;
+}

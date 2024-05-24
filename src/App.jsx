@@ -7,10 +7,14 @@ import { MisCursos } from './pages/MisCursos';
 import { SidebarProvider } from "./context/SidebarProvider"
 import './App.css'
 import './normalize.css'
+import { RegisterPage } from './auth/pages/RegisterPage';
+import { UserProvider } from './context/UserProvider';
+
 
 function App() {
   const { login } = useContext(AuthContext);
   return (
+    <UserProvider>
     <SidebarProvider>
       <Routes >
 
@@ -21,6 +25,7 @@ function App() {
                   )
                   : <>
                       <Route path='/login' element={<LoginPage />} />
+                      <Route path='/register' element={<RegisterPage />} />
                       <Route path='/*' element={<Navigate to="/login" /> } />
                   </>
                   
@@ -28,6 +33,7 @@ function App() {
 
       </Routes>
       </SidebarProvider>
+      </UserProvider>
   );
 }
 
