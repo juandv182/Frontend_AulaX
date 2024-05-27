@@ -18,6 +18,36 @@ export const RegisterPage = () => {
         });
         console.log(userForm)
     };
+    const handleSelection = (e) => {
+        const selectedValue = e.target.value;
+        if(selectedValue==="Padre de Familia"){
+            console.log("pf")
+            setUserForm({
+                ...userForm,
+                padrefam: true,
+                docente: false,
+            });
+        }
+        else if(selectedValue==="Docente"){
+            console.log("d")
+            setUserForm({
+                ...userForm,
+                padrefam: false,
+                docente: true,
+            });
+            
+        }
+        else if(selectedValue==="Alumno"){
+            console.log("a")
+            setUserForm({
+                ...userForm,
+                padrefam: false,
+                docente: false,
+            });
+        }
+        //console.log(`Opción seleccionada: ${selectedValue}`);
+        console.log(userForm)
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -40,11 +70,12 @@ export const RegisterPage = () => {
                             id="userType"
                             name="userType"
                             className="form-control"
-                            value={userForm.userType}
-                            onChange={handleChange}
+                            value={event.target.value}
+                            placeholder="Seleccione el tipo de Usuario"
+                            onChange={handleSelection}
                         >
-                            <option>Estudiante</option>
-                            <option>Maestro</option>
+                            <option>Alumno</option>
+                            <option>Docente</option>
                             <option>Padre de Familia</option>
                         </select>
                     </div>
@@ -56,6 +87,7 @@ export const RegisterPage = () => {
                             name="username"
                             className="form-control"
                             value={userForm.username}
+                            placeholder="Nombre de Usuario"
                             onChange={handleChange}
                 
                         />
@@ -67,6 +99,7 @@ export const RegisterPage = () => {
                             type="email"
                             id="email"
                             name="email"
+                            placeholder="Email"
                             className="form-control"
                             value={userForm.email}
                             onChange={handleChange}
@@ -79,12 +112,14 @@ export const RegisterPage = () => {
                         <input
                             type="date"
                             id="birthdate"
-                            name="birthdate"
+                            name="fechaNacimiento"
+                            placeholder="Fecha de Nacimiento"
                             className="form-control"
-                            value={userForm.birthdate}
+                            value={userForm.fechaNacimiento}
                             onChange={handleChange}
                             
                         />
+                        <p className="text-danger">{errors?.fechaNacimiento}</p>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="password" className="form-label">Contraseña</label>
@@ -92,6 +127,7 @@ export const RegisterPage = () => {
                             type="password"
                             id="password"
                             name="password"
+                            placeholder="Contraseña"
                             className="form-control"
                             value={userForm.password}
                             onChange={handleChange}

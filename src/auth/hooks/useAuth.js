@@ -6,6 +6,8 @@ import { loginUser } from "../services/authService";
 
 const initialLogin = JSON.parse(sessionStorage.getItem('login')) || {
     isAuth: false,
+    isDocente: false,
+    isPadrefam: false,
     user: undefined,
 }
 export const useAuth = () => {
@@ -13,22 +15,34 @@ export const useAuth = () => {
     const [login, dispatch] = useReducer(loginReducer, initialLogin);
     const navigate = useNavigate();
 
-    const handlerLogin = ({ username, password }) => {
-        const isLogin = loginUser({ username, password });
+    const handlerLogin = async ({ username, password }) => {
         
-        if (isLogin) {
-            const user = { username: 'admin' }
+        try {
+            const response = await loginUser({ username, password });
+            const token = response.data.token;
+            const claims = JSON.parse(window.atob(token.split(".")[1]));
+            console.log(claims);
+            const user = { username: claims.sub }
             dispatch({
                 type: 'login',
-                payload: user,
+                payload: {user, isDocente: claims.isDocente, isPadrefam: claims.isPadrefam},
             });
             sessionStorage.setItem('login', JSON.stringify({
                 isAuth: true,
+                isDocente: claims.isDocente,
+                isPadrefam: claims.isPadrefam,
                 user,
             }));
+            sessionStorage.setItem('token', `Bearer ${token}`);
             navigate('/cursos');
-        } else {
-            Swal.fire('Error Login', 'Username o password invalidos', 'error');
+        } catch (error) {
+            if (error.response?.status == 401) {
+                Swal.fire('Error Login', 'Username o password invalidos', 'error');
+            } else if (error.response?.status == 403) {
+                Swal.fire('Error Login', 'No tiene acceso al recurso o permisos!', 'error');
+            } else {
+                throw error;
+            }
         }
     }
 
@@ -36,7 +50,9 @@ export const useAuth = () => {
         dispatch({
             type: 'logout',
         });
+        sessionStorage.removeItem('token');
         sessionStorage.removeItem('login');
+        sessionStorage.clear();
     }
     return {
         login,

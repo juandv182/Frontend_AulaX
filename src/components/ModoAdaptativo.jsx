@@ -28,7 +28,7 @@ export const ModoAdaptativo = () =>{
             
               <h2 className='display-1'>Historial de Recursos Accedidos</h2>
             </button>
-            <button onClick={()=> navigate(`cuestionarioNivelCurso`)} className="course-card btn btn-light btn-lg d-flex align-items-center justify-content-center text-dark">
+            <button onClick={()=> navigate(`/cursos/${tipoCurso}/modoAdaptativo/cuestionarioNivelCurso`)} className="course-card btn btn-light btn-lg d-flex align-items-center justify-content-center text-dark">
 
               <h2 className='display-1'>Dar evaluacion de conocimientos de todo el curso</h2>
             </button>

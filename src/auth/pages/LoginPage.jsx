@@ -42,7 +42,7 @@ export const LoginPage = () => {
                 <form onSubmit={ onSubmit }>
                     <input
                         className="form-control my-3"
-                        placeholder="Email"
+                        placeholder="Nombre de Usuario"
                         name="username"
                         value={username}
                         onChange={ onInputChange }
@@ -56,19 +56,14 @@ export const LoginPage = () => {
                         value={password}
                         onChange={onInputChange}
                     />
-                    <div className="form-check">
-                      <input className="form-check-input" type="checkbox" id="rememberMe" />
-                      <label className="form-check-label" htmlFor="rememberMe">
-                        Recuerda la cuenta
-                      </label>
-                    </div>
-                    <a href="#" className="link">¿Se olvidó su contraseña?</a>
+
+                    <a href="#" className="link m-5">¿Se olvidó su contraseña?</a>
                     <button
                         className="btn btn-success"
                         type="submit">
                         Iniciar Sesión
                     </button>
-                    <p>¿No tiene una cuenta? <Link to="/register">Regístrese</Link></p>
+                    <p className="my-5">¿No tiene una cuenta? <Link to="/register">Regístrese</Link></p>
                 </form>
             </div>
         </div>

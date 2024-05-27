@@ -1,0 +1,54 @@
+.cuestionario-container {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    margin: 4rem auto;
+    font-family: "Baloo 2", sans-serif;
+    height: 95%; /* Aumentar la altura del contenedor */
+}
+
+
+.opciones {
+    background-color: #8772ff;
+    padding: 15px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.opciones .form-check {
+    margin-bottom: 15px;
+}
+
+.form-check-input {
+    margin-right: 10px;
+}
+
+.form-check-label {
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+button {
+    background-color: #ffc107;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: #e0e0e0;
+    cursor: not-allowed;
+}
+

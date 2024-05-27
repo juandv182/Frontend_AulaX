@@ -3,19 +3,21 @@ import { NavLink } from "react-router-dom";
 import { FaBars ,FaHome, FaBook, FaChartLine, FaCog , FaUserCircle} from 'react-icons/fa';
 import { useContext, useState } from 'react';
 import { SidebarContext } from '../../context/SidebarContext';
+import { AuthContext } from '../../auth/context/AuthContext';
 
 export const Sidebar = () => {
 
   const toggleSidebar = () => {
     setIsExpanded(!isExpanded); 
   };
+  const { login } = useContext(AuthContext);
   const { isExpanded, setIsExpanded } = useContext(SidebarContext);
   return (
     <SidebarMenu className={isExpanded ? 'expanded' : 'collapsed'}>
       <SidebarMenu.Header>
         <SidebarMenu.Brand>
           <FaUserCircle size={50} className='my-3'/>
-          <p>Carlos Perez - Estudiante</p>
+          <p> {login.user.username} - {login.isDocente ? "Docente"  : (login.isPadrefam ? "PadreFamilia" : "Estudiante")}</p>
         </SidebarMenu.Brand>
         <SidebarMenu.Toggle className="sidebar-toggle" onClick={toggleSidebar}>
           <FaBars className="icon" /> 
