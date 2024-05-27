@@ -2,13 +2,14 @@ import { useContext } from "react"
 import { NavLink } from "react-router-dom"
 import { UserContext } from "../context/UserContext"
 
-export const UserRow = ({id, username, email}) => {
+export const UserRow = ({id, username, email,docente}) => {
     const { handlerUserSelectedForm, handlerRemoveUser } = useContext(UserContext);
     return (
         <tr>
             <td>{id}</td>
             <td>{username}</td>
             <td>{email}</td>
+            <td>{docente}</td>
             <td>
                 <button
                     type="button"
@@ -16,7 +17,8 @@ export const UserRow = ({id, username, email}) => {
                     onClick={() => handlerUserSelectedForm({
                         id,
                         username,
-                        email
+                        email,
+                        docente
                     })}
                 >
                     update

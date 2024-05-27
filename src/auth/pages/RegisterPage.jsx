@@ -1,15 +1,21 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/LOGO.png';
 import '../Login.css'; // Importa el archivo CSS
 import { UserContext } from '../../context/UserContext';
 
 export const RegisterPage = () => {
-    const { initialUserForm, handlerAddUser, errors } = useContext(UserContext);
+    
+    const { initialUserForm, handlerAddUser, errors ,getUsers } = useContext(UserContext);
     const [userForm, setUserForm] = useState(initialUserForm);
+    const [users,setUsers]= useState([]);
     const navigate = useNavigate();
-
-
+    const [isParent, setIsParent] = useState(false);
+    
+    useEffect(()=>{
+        setUsers(getUsers());
+        console.log(users);
+    },[]);
     const handleChange = (e) => {
         const { name, value } = e.target;
         setUserForm({
@@ -22,11 +28,13 @@ export const RegisterPage = () => {
         const selectedValue = e.target.value;
         if(selectedValue==="Padre de Familia"){
             console.log("pf")
+            console.log(users)
             setUserForm({
                 ...userForm,
                 padrefam: true,
                 docente: false,
             });
+            setIsParent(true);
         }
         else if(selectedValue==="Docente"){
             console.log("d")
@@ -35,7 +43,7 @@ export const RegisterPage = () => {
                 padrefam: false,
                 docente: true,
             });
-            
+            setIsParent(false);
         }
         else if(selectedValue==="Alumno"){
             console.log("a")
@@ -44,6 +52,7 @@ export const RegisterPage = () => {
                 padrefam: false,
                 docente: false,
             });
+            setIsParent(false);
         }
         //console.log(`Opción seleccionada: ${selectedValue}`);
         console.log(userForm)
@@ -79,6 +88,25 @@ export const RegisterPage = () => {
                             <option>Padre de Familia</option>
                         </select>
                     </div>
+                    {isParent && (
+                        <div className="mb-3">
+                            <label htmlFor="child" className="form-label">Seleccione a su hijo:</label>
+                            <select
+                                id="child"
+                                name="childId"
+                                className="form-control"
+                                value={userForm.childId}
+                                onChange={handleChange}
+                            >
+                                <option value="">Seleccione a su hijo</option>
+                                {users.data.map(user => (
+                                    <option key={user.id} value={user.id}>
+                                       {user.id} {user.username} ({user.email}) {user.fecha_nacimiento} {user.docente}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                    )}
                     <div className="mb-3">
                         <label htmlFor="username" className="form-label">Nombre de Usuario</label>
                         <input

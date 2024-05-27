@@ -13,6 +13,7 @@ export const UsersList = () => {
                     <th>#</th>
                     <th>username</th>
                     <th>email</th>
+                    <th>docente</th>
                     <th>update</th>
                     <th>update route</th>
                     <th>remove</th>
@@ -20,12 +21,13 @@ export const UsersList = () => {
             </thead>
             <tbody>
                 {
-                    users.map(({id, username, email }) => (
+                    users.map(({id, username, email ,docente}) => (
                         <UserRow
                             key={id}
                             id={id}
                             username={username}
-                            email={email} />
+                            email={email}
+                            docente={docente}/>
                     ))
                 }
             </tbody>

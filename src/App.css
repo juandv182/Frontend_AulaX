@@ -50,7 +50,7 @@ h2{
   border-radius: 1.5rem;
   margin: 1rem;
   width: 25rem; /* Ajusta según tus necesidades */
-  background:  linear-gradient(90deg, #4f90a4, var(--secundario));
+  background:  var(--secundario);
   overflow: hidden;
   min-height: 96vh; /* Asegura que el sidebar se extienda a la altura completa de la ventana */
 
@@ -128,7 +128,7 @@ h2{
 /* Estilos para ocultar texto y mostrar solo íconos cuando el sidebar está contraído */
 .sidebar-menu.collapsed .sidebar-menu-nav-link {
   justify-content: center; /* Centra el ícono en el botón */
-  padding: 1rem; /* Ajusta el padding para tener un área de clic adecuada */
+  padding: 1.5rem; /* Ajusta el padding para tener un área de clic adecuada */
 }
 
 .sidebar-menu.collapsed .sidebar-menu-nav-link span,
