@@ -4,6 +4,7 @@ import logo from '../../assets/LOGO.png';
 import '../Login.css'; // Importa el archivo CSS
 import { UserContext } from '../../context/UserContext';
 
+
 export const RegisterPage = () => {
     
     const { initialUserForm, handlerAddUser, errors ,getUsers } = useContext(UserContext);
@@ -12,10 +13,15 @@ export const RegisterPage = () => {
     const navigate = useNavigate();
     const [isParent, setIsParent] = useState(false);
     
-    useEffect(()=>{
-        setUsers(getUsers());
-        console.log(users);
-    },[]);
+    useEffect(() => {
+        const fetchUsers = async () => {
+            const fetchedUsers = await getUsers();
+            setUsers(fetchedUsers);
+        };
+
+        fetchUsers();
+        console.log(users)
+    }, []);
     const handleChange = (e) => {
         const { name, value } = e.target;
         setUserForm({
@@ -57,7 +63,14 @@ export const RegisterPage = () => {
         //console.log(`Opción seleccionada: ${selectedValue}`);
         console.log(userForm)
     };
-
+    const handleSelectionHijo= (e) => {
+        const { name, value } = e.target;
+        setUserForm({
+            ...userForm,
+            id_hijo: parseInt(value),
+        });
+        console.log(value)
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
         // Lógica para enviar el formulario
@@ -74,12 +87,12 @@ export const RegisterPage = () => {
                 <h2 className="text-center mb-4">REGISTRE SU CUENTA</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
-                        <label htmlFor="userType" className="form-label">Unirse a Aula X como:</label>
+                        <label htmlFor="child" className="form-label">Unirse a Aula X como:</label>
                         <select
-                            id="userType"
-                            name="userType"
+                            id="child"
+                            name="childId"
                             className="form-control"
-                            value={event.target.value}
+                            value={userForm.childId}
                             placeholder="Seleccione el tipo de Usuario"
                             onChange={handleSelection}
                         >
@@ -96,12 +109,12 @@ export const RegisterPage = () => {
                                 name="childId"
                                 className="form-control"
                                 value={userForm.childId}
-                                onChange={handleChange}
+                                onChange={handleSelectionHijo}
                             >
                                 <option value="">Seleccione a su hijo</option>
-                                {users.data.map(user => (
+                                {users.filter(user => !user.docente && !user.padrefam).map(user => (
                                     <option key={user.id} value={user.id}>
-                                       {user.id} {user.username} ({user.email}) {user.fecha_nacimiento} {user.docente}
+                                        {user.username} ({user.email}) {user.docente ? "Docente"  : (user.padrefam ? "PadreFamilia" : "Alumno")}
                                     </option>
                                 ))}
                             </select>

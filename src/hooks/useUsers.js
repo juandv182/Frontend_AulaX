@@ -15,6 +15,7 @@ const initialUserForm = {
     password: '',
     docente: false,
     padrefam: false,
+    id_hijo: 0,
 }
 
 const initialErrors = {
@@ -39,15 +40,17 @@ export const useUsers = () => {
 
         try {            
             const result = await findAll();
-            console.log(result);
+            //console.log(result);
             dispatch({
                 type: 'loadingUsers',
                 payload: result.data,
             });
+            return result.data || [];
         } catch (error) {
             if (error.response?.status == 401) {
                 handlerLogout();
             }
+            return [];
         }
     }
 

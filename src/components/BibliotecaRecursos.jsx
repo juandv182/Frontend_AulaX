@@ -17,7 +17,7 @@ export const BibliotecaRecursos = () => {
     const temasPorPagina = 5;
 
     useEffect(() => {
-        axios.get('http://localhost:8080/competencies')
+        axios.get(`${import.meta.env.VITE_API_BASE_URL}/competencies`)
             .then(response => {
                 if(tipoCurso==="matematicas")
                     setCompetencias(response.data.filter(comp => comp.id <= 4)); 
@@ -30,7 +30,7 @@ export const BibliotecaRecursos = () => {
 
     useEffect(() => {
         if (competenciaSeleccionada) {
-            axios.get(`http://localhost:8080/competencies/${competenciaSeleccionada}/topics`)
+            axios.get(`${import.meta.env.VITE_API_BASE_URL}/competencies/${competenciaSeleccionada}/topics`)
                 .then(response => {
                     setTemas(response.data);
                     setTemasFiltrados(response.data);

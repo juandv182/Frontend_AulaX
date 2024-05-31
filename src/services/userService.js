@@ -12,7 +12,7 @@ export const findAll = async() => {
     }
 }
 
-export const save = async ({ username, email, password, docente,padrefam,fechaNacimiento }) => {
+export const save = async ({ username, email, password, docente,padrefam,fechaNacimiento ,id_hijo}) => {
     try {
         return await usersApi.post(BASE_URL, {
             username,
@@ -21,19 +21,18 @@ export const save = async ({ username, email, password, docente,padrefam,fechaNa
             fechaNacimiento,
             docente,
             padrefam,
+            id_hijo
         });
     } catch (error) {
         throw error;
     }
 }
 
-export const update = async({ id, username, email, docente,padrefam  }) => {
+export const update = async({ id, username, email }) => {
     try {
         return await usersApi.put(`${BASE_URL}/${id}`, {
             username,
-            email,
-            docente,
-            padrefam,
+            email
         });
     } catch (error) {
         throw error;

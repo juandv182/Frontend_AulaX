@@ -12,10 +12,10 @@ export const RecursosPorTema = () => {
   const [recursos, setRecursos] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/topics/${temaId}/resources`)
+    axios.get(`${import.meta.env.VITE_API_BASE_URL}/topics/${temaId}/resources`)
       .then(response => {
         const fetchFiles = response.data.map(recurso => {
-          return axios.get(`http://localhost:8080/resources/${recurso.id}/files`)
+          return axios.get(`${import.meta.env.VITE_API_BASE_URL}/resources/${recurso.id}/files`)
             .then(filesResponse => ({
               ...recurso,
               files: filesResponse.data
