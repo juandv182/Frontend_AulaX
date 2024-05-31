@@ -3,8 +3,10 @@ import { TituloPorPagina } from "../components/layout/TituloPorPagina"
 import { UserContext } from "../context/UserContext";
 import { AuthContext } from "../auth/context/AuthContext";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
+import { GestionCuestionarios } from "../components/GestionCuestionarios";
 
-export const    Inicio = () => {
+export const    Inicio = ({ onSelectResource }) => {
   const initialUser ={
     docente: false,
     email: "",
@@ -14,6 +16,7 @@ export const    Inicio = () => {
     padrefam:false,
     username: "",
   }
+
   const [user,setUser]= useState(initialUser);
   const { login } = useContext(AuthContext);
    
@@ -24,6 +27,7 @@ export const    Inicio = () => {
           
           setUser(response.data);
           console.log(user);
+
       } catch (error) {
           console.error(error);
           throw error;
@@ -39,9 +43,12 @@ export const    Inicio = () => {
         <TituloPorPagina
           titulo="Inicio"
           />
-        {login.isDocente ? <h1>Docente</h1>
-        
-        
+        {login.isDocente ? 
+
+      <>
+        <h2>Gestión de Cuestionarios por Recursos</h2>
+        <GestionCuestionarios/>
+    </>
 
 
         : (login.isPadrefam ?  
