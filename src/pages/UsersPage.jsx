@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { UserModalForm } from "../components/UserModalForm";
 import { UsersList } from "../components/UsersList";
 import { UserContext } from "../context/UserContext";
+import { AuthContext } from "../auth/context/AuthContext";
 
 export const UsersPage = () => {
 
@@ -11,7 +12,7 @@ export const UsersPage = () => {
         handlerOpenForm,
         getUsers,
     } = useContext(UserContext);
-
+    const {login}=useContext(AuthContext);
     useEffect(() => {
         getUsers();
     }, []);
@@ -21,8 +22,10 @@ export const UsersPage = () => {
 
             {!visibleForm ||
                 <UserModalForm />}
+            <div>
+            <h2 className="m-4">Gestión de Usuarios</h2>
             <div className="container my-4">
-                <h2>Users App</h2>
+                
                 <div className="row">
                     <div className="col">
                         {visibleForm || <button
@@ -38,6 +41,7 @@ export const UsersPage = () => {
                         }
                     </div>
                 </div>
+            </div>
             </div>
         </>
     );

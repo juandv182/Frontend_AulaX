@@ -28,7 +28,7 @@ const Cuestionarios = ({ resourceId }) => {
         typeQuizz: { id: 1 } });
       })
       .catch(error => {
-        console.error('Error creating quizz:', error);
+        console.error('Error creating quiz:', error);
       });
   };
 

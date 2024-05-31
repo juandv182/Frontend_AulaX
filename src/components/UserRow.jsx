@@ -2,14 +2,14 @@ import { useContext } from "react"
 import { NavLink } from "react-router-dom"
 import { UserContext } from "../context/UserContext"
 
-export const UserRow = ({id, username, email,docente}) => {
+export const UserRow = ({id, username, email,isDocente}) => {
     const { handlerUserSelectedForm, handlerRemoveUser } = useContext(UserContext);
     return (
         <tr>
             <td>{id}</td>
             <td>{username}</td>
             <td>{email}</td>
-            <td>{docente}</td>
+            <td>Alumno</td>
             <td>
                 <button
                     type="button"
@@ -18,25 +18,20 @@ export const UserRow = ({id, username, email,docente}) => {
                         id,
                         username,
                         email,
-                        docente
+                        
                     })}
                 >
-                    update
+                    Actualizar
                 </button>
             </td>
-            <td>
-                <NavLink className={'btn btn-secondary btn-sm'}
-                    to={'/users/edit/' + id} >
-                    update route
-                </NavLink>
-            </td>
+            
             <td>
                 <button
                     type="button"
                     className="btn btn-danger btn-sm"
                     onClick={() => handlerRemoveUser(id)}
                 >
-                    remove
+                    Eliminar
                 </button>
             </td>
         </tr>

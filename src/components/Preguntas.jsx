@@ -6,7 +6,7 @@ const Preguntas = ({ quizId }) => {
   const [newQuestion, setNewQuestion] = useState({ name: '', quizId });
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API_BASE_URL}/questions/${quizId}/Quizz`)
+    axios.get(`${import.meta.env.VITE_API_BASE_URL}questions/${quizId}/Quizz`)
       .then(response => {
         setQuestions(response.data);
       })

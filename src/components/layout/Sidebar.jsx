@@ -1,6 +1,7 @@
 import SidebarMenu from 'react-bootstrap-sidebar-menu';
 import { NavLink } from "react-router-dom";
 import { FaBars ,FaHome, FaBook, FaChartLine, FaCog , FaUserCircle} from 'react-icons/fa';
+import { PiStudentDuotone } from "react-icons/pi";
 import { useContext, useState } from 'react';
 import { SidebarContext } from '../../context/SidebarContext';
 import { AuthContext } from '../../auth/context/AuthContext';
@@ -39,6 +40,10 @@ export const Sidebar = () => {
         <NavLink to="/ajustes" className="sidebar-menu-nav-link">
           <FaCog size={25} className="icon"/>
           <span>AJUSTES</span>
+        </NavLink>
+        <NavLink to="/users" className="sidebar-menu-nav-link">
+          <PiStudentDuotone  size={25} className="icon"/>
+          <span>ALUMNOS</span>
         </NavLink>
       </SidebarMenu.Body>
     </SidebarMenu>

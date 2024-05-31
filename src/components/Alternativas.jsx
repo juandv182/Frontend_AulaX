@@ -6,7 +6,7 @@ const Alternativas = ({ questionId }) => {
   const [newAlternative, setNewAlternative] = useState({ value: '', is_marked: false, is_answer: false, questionId });
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API_BASE_URL}/alternatives/${questionId}/QuestionId`)
+    axios.get(`/alternatives/${questionId}/QuestionId`)
       .then(response => {
         setAlternatives(response.data);
       })

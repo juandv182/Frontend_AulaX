@@ -11,23 +11,22 @@ export const UsersList = () => {
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>username</th>
-                    <th>email</th>
-                    <th>docente</th>
-                    <th>update</th>
-                    <th>update route</th>
-                    <th>remove</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                    <th>Actualizar</th>
+                    <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
                 {
-                    users.map(({id, username, email ,docente}) => (
+                    users.map(({id, username, email ,isDocente}) => (
                         <UserRow
                             key={id}
                             id={id}
                             username={username}
                             email={email}
-                            docente={docente}/>
+                            docente={isDocente}/>
                     ))
                 }
             </tbody>
