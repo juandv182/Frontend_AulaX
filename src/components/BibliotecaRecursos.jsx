@@ -4,6 +4,7 @@ import { NavLink, useParams ,useNavigate } from 'react-router-dom';
 import { useState , useEffect} from "react";
 import axios from 'axios';
 import { Table, InputGroup, FormControl, Button, Pagination } from 'react-bootstrap';
+import { color } from "chart.js/helpers";
 
 export const BibliotecaRecursos = () => {
     const { tipoCurso } = useParams();
@@ -48,8 +49,12 @@ export const BibliotecaRecursos = () => {
     const paginas = [];
     for (let number = 1; number <= cantidadDePaginas; number++) {
         paginas.push(
-            <Pagination.Item key={number} active={number === paginaActual} onClick={() => setPaginaActual(number)}>
+
+            <Pagination.Item  key={number} active={number === paginaActual} onClick={() => setPaginaActual(number)}>
+                
                 {number}
+               
+               
             </Pagination.Item>
         );
     }
@@ -61,21 +66,27 @@ export const BibliotecaRecursos = () => {
                     <RiArrowGoBackLine size={27} />
                 </button>
                 <TituloPorPagina titulo="Biblioteca" />
+                
           </div>
+          {tipoCurso==="matematicas"?<h1 className='m-1 ms-5 text-primary'> Matemáticas </h1> : <h1 className='m-1 ms-5 text-success'> Ciencia y Tecnología </h1>}
+          <h2 className="m-1 ms-5">Temas por competencias</h2>
             <div className="competencias-selector">
+                <button className="competencia-btn" onClick={() => setCompetenciaSeleccionada(competencias)}>Ver todos los temas</button>
                 {competencias.map(competencia => (
                     <button key={competencia.id} className={`competencia-btn ${competencia.id === competenciaSeleccionada ? 'active' : ''}`} onClick={() => setCompetenciaSeleccionada(competencia.id)}>
                         {competencia.name}
                     </button>
                 ))}
             </div>
-            <InputGroup className="mb-3">
+            
+            <InputGroup className="my-4 mx-5  w-50" >
                 <FormControl
                     placeholder="Buscar Tema"
                     value={filtro}
                     onChange={(e) => filtrarTemas(e.target.value)}
                 />
             </InputGroup>
+            <div className="d-flex flex-column align-items-center justify-content-center">
             <Table  bordered hover responsive className="custom-table">
                 <thead>
                     <tr>
@@ -99,7 +110,26 @@ export const BibliotecaRecursos = () => {
                     ))}
                 </tbody>
             </Table>
-            <Pagination>{paginas}</Pagination>
+            <Pagination size="lg">
+ 
+            <Pagination.First onClick={() => setPaginaActual(1)}/>
+            <Pagination.Prev onClick={() => {
+                if((paginaActual-1)>=1){
+                setPaginaActual(paginaActual-1)
+                }
+                }}/>
+           
+ 
+                {paginas}
+
+            <Pagination.Next onClick={() => {
+                if((paginaActual+1)<=cantidadDePaginas)
+                setPaginaActual(paginaActual+1)}
+                }/>
+            <Pagination.Last onClick={() => setPaginaActual(cantidadDePaginas)}/>
+            </Pagination>
+            </div>
+            
         </div>
     );
 }

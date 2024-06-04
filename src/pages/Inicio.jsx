@@ -18,13 +18,22 @@ export const    Inicio = ({ onSelectResource }) => {
   }
 
   const [user,setUser]= useState(initialUser);
+  
+  const [hijo,setHijo]= useState(initialUser);
+
   const { login } = useContext(AuthContext);
    
   useEffect( ()=>{
     const findUser = async() => {
       try {
           const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/users/username/${login.user.username}`);
-          
+          if(login.isPadrefam){
+            const responseHijo = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/users/${response.data.id_hijo}`).
+            then(responseHijo =>
+              setHijo(responseHijo.data)
+            );
+            
+          }
           setUser(response.data);
           console.log(user);
 
@@ -55,7 +64,8 @@ export const    Inicio = ({ onSelectResource }) => {
         
         <>
         <h1>Padre Familia</h1>
-        <h2>Su hijo es {user.id}</h2>
+        <h2>Su id es {user.id} , su fecha de nacimiento es  {user.fechaNacimiento} </h2>
+        <h2>Su hijo tiene username {hijo.username}, con fecha de nacimiento  {hijo.fechaNacimiento}</h2>
         </>
         :
         <>

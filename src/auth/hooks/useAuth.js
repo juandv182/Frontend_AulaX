@@ -34,7 +34,7 @@ export const useAuth = () => {
                 user,
             }));
             sessionStorage.setItem('token', `Bearer ${token}`);
-            navigate('/users');
+            navigate('/inicio');
             window.location.reload(false);
         } catch (error) {
             if (error.response?.status == 401) {

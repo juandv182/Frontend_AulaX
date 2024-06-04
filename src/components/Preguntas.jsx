@@ -12,6 +12,7 @@ const Preguntas = ({ quizId }) => {
       })
       .catch(error => {
         console.error('Error fetching questions:', error);
+        console.log({quizId})
       });
   }, [quizId]);
 
@@ -36,7 +37,8 @@ const Preguntas = ({ quizId }) => {
         placeholder="Nombre de la pregunta"
       />
       <button onClick={handleCreateQuestion}>Crear Pregunta</button>
-      <table>
+      <div className=" d-flex justify-content-center">
+      <table striped bordered hover className="custom-table">
         <thead>
           <tr>
             <th>Nombre</th>
@@ -54,6 +56,7 @@ const Preguntas = ({ quizId }) => {
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 };

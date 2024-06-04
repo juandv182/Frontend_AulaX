@@ -48,6 +48,7 @@ export const AppRoutes = () => {
                     <Route path="/cursos/:tipoCurso/biblioteca/recursosPorTema/:temaId/scratch-viewer/:scratchId" element={<ScratchViewer />} />
                     <Route path="/cursos/:tipoCurso/modoAdaptativo" element={<ModoAdaptativo />} />
                     <Route path="/cursos/:tipoCurso/modoAdaptativo/cuestionarioNivelCurso" element={<CuestionarioNivelCurso />} />
+                    <Route path="/cursos/:tipoCurso/modoAdaptativo/cuestionarioNivelCurso/video-viewer/:videoId" element={<VideoViewer />} />
                     <Route path="/" element={<Navigate to="/cursos" />} />
                 </Routes>
             </div>

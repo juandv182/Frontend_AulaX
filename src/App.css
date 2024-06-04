@@ -34,7 +34,7 @@ h2{
   flex-direction: column;
   min-height: 100vh; 
   padding-top: 6rem; 
-  transition: margin-left 0.3s ease;
+  transition: margin-left 0.5s ease;
 }
 .app-container.expanded {
   margin-left: 27rem; /* Ancho del sidebar cuando está expandido */
@@ -76,7 +76,7 @@ h2{
   background-color: var(--naranja); /* Mantén el naranja para el fondo de los botones */
   padding: 1rem 2rem;
   text-decoration: none; /* No subrayado */
-  margin: 0.8rem; /* Margen para espaciado */
+  margin: 1rem; /* Margen para espaciado */
   border-radius: 2rem; /* Bordes redondeados para los botones */
   transition: background-color 0.3s; /* Suaviza el cambio de color al interactuar */
 }
@@ -88,7 +88,7 @@ h2{
 
 /* Ajusta estos estilos para manejar cómo quieres que los iconos y textos se vean y alineen */
 .sidebar-menu-nav-link  .icon {
-  margin-right: 2rem; /* Margen a la derecha del ícono */
+  margin-right: 1rem; /* Margen a la derecha del ícono */
 }
 
 
@@ -166,12 +166,12 @@ h2{
 }
 .top-bar-logo  {
   display: flex;
-  justify-content: center;
-  padding-left: 18rem;
+  justify-content: space-evenly;
   flex-grow: 1; 
 }
 .top-bar-logo img {
-  height: 8.7rem; 
+  margin-top: 0;
+  height: 8.5rem; 
   width: 9.5rem;
 }
 
@@ -262,13 +262,13 @@ h2{
 
 .competencias-selector {
   display: flex;
-  justify-content: start;
-  margin-bottom: 1rem;
+  justify-content: space-evenly;
+  margin: 2rem;
   background-color: var(--amarilloSuave); /* Usa el color amarillo de tu paleta */
   border-radius: 1rem; /* Bordes redondeados para el contenedor */
-  padding: 0.5rem; /* Espaciado interno del contenedor */
-  border: 1px solid #ffd700; /* Borde del color que necesites */
-  margin-right: 1rem;
+  padding: 1rem; /* Espaciado interno del contenedor */
+  border: 2px solid #ffd700; /* Borde del color que necesites */
+ 
 }
 
 .competencia-btn {
@@ -298,11 +298,11 @@ h2{
 .custom-table {
   background-color: #ffffff; /* Fondo blanco para la tabla */
   color: #333; 
+
   
-  border-radius: 2.5rem;
 }
 .custom-table thead th {
-  background-color: #c6c2c2; /* Fondo claro para los encabezados de la tabla */
+  background-color: #cacaca; /* Fondo claro para los encabezados de la tabla */
   
 }
 
@@ -444,3 +444,5 @@ button.btn-warning {
   border-color: #ffc107;
   font-size: 1.2rem;
 }
+
+

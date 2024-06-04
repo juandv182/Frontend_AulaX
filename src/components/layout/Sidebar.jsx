@@ -41,10 +41,13 @@ export const Sidebar = () => {
           <FaCog size={25} className="icon"/>
           <span>AJUSTES</span>
         </NavLink>
+        {login.isDocente 
+        &&
         <NavLink to="/users" className="sidebar-menu-nav-link">
           <PiStudentDuotone  size={25} className="icon"/>
           <span>ALUMNOS</span>
         </NavLink>
+        }
       </SidebarMenu.Body>
     </SidebarMenu>
   );

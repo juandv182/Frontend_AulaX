@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const Cuestionarios = ({ resourceId }) => {
+const Cuestionarios = ({ resourceId ,onSelectQuiz}) => {
   const [quizzes, setQuizzes] = useState([]);
   const [newQuiz, setNewQuiz] = useState({ 
     name: "",
@@ -33,7 +33,7 @@ const Cuestionarios = ({ resourceId }) => {
   };
 
   return (
-    <div>
+    <div >
       <h2>Cuestionarios</h2>
       <input
         type="text"
@@ -42,7 +42,8 @@ const Cuestionarios = ({ resourceId }) => {
         placeholder="Nombre del cuestionario"
       />
       <button onClick={handleCreateQuiz}>Crear Cuestionario</button>
-      <table>
+      <div className=" d-flex justify-content-center">
+      <table  striped bordered hover className="custom-table">
         <thead>
           <tr>
             <th>Nombre</th>
@@ -54,12 +55,13 @@ const Cuestionarios = ({ resourceId }) => {
             <tr key={quiz.id}>
               <td>{quiz.name}</td>
               <td>
-                <button>Gestionar Preguntas</button>
+                <button onClick={() => onSelectQuiz(quiz)}>Gestionar Preguntas</button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 };

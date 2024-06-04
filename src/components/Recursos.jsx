@@ -20,9 +20,9 @@ const Recursos = ({ onSelectResource }) => {
   }, [login.isDocente]);
 
   return (
-    <div>
-      <h2>Recursos</h2>
-      <table>
+    <div className='d-flex justify-content-center'>
+      
+      <table striped bordered hover className="custom-table">
         <thead>
           <tr>
             <th>Nombre</th>
