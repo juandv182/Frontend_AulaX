@@ -73,7 +73,6 @@ h2{
   display: block;
   color: white; /* Color del texto de los enlaces */
   font-family:  var(--fontSecundaria);
-  font-weight: bold;
   background-color: var(--naranja); /* Mantén el naranja para el fondo de los botones */
   padding: 1rem 2rem;
   text-decoration: none; /* No subrayado */
