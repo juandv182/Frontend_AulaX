@@ -6,13 +6,26 @@ export const EncuestaModal = ({ show, handleClose }) => {
   const [paginaActual, setPaginaActual] = useState(0);
   const [preguntasDeLaEncuesta, setPreguntasDeLaEncuesta] = useState([]);
   const [respuestas, setRespuestas] = useState({});
-
+  const [idCuestionario, setIdCuestionario] = useState(null);
+  const calcularEdad = (fechaNacimiento) => {
+    const hoy = new Date();
+    const fechaNac = new Date(fechaNacimiento);
+    let edad = hoy.getFullYear() - fechaNac.getFullYear();
+    const mes = hoy.getMonth() - fechaNac.getMonth();
+  
+    if (mes < 0 || (mes === 0 && hoy.getDate() < fechaNac.getDate())) {
+      edad--;
+    }
+  
+    return edad;
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
         // Primera petición para obtener el ID del cuestionario
         const responseType = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/quizzes/4/TypeQuizzId`);
         const idObtenida = responseType.data[0].id;
+        setIdCuestionario(idObtenida);
 
         // Segunda petición para obtener las preguntas y alternativas
         const responseQuestions = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/quizzes/${idObtenida}/questions`);
@@ -53,6 +66,16 @@ export const EncuestaModal = ({ show, handleClose }) => {
           question: { id: preguntaId }
         });
       }
+      // Nueva petición para obtener las alternativas marcadas
+      const responseMarkedAlternatives = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/quizzes/${idCuestionario}/marked-alternatives`);
+      const markedAlternatives = responseMarkedAlternatives.data.map(alt => parseInt(alt.value));
+
+      // Añadir 0 y 10 al inicio del arreglo
+      const finalArray = [0, calcularEdad(localStorage.getItem("fechaNacimiento")), ...markedAlternatives];
+      console.log(finalArray);
+      // Realizar la petición POST con el arreglo final
+      await axios.post('http://127.0.0.1:8000/predict', finalArray);
+
       handleClose();
     } catch (error) {
       console.error('Error submitting answers:', error);
