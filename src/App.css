@@ -86,7 +86,7 @@ h2 {
 @media (max-width: 768px) {
   .sidebar-menu {
     width: 60px;
-    transform: translateX(-120%);
+    transform: translateX(-116%);
   }
 
   .sidebar-menu.expanded {
