@@ -18,8 +18,10 @@ export const Sidebar = () => {
       <SidebarMenu.Header>
         <SidebarMenu.Brand>
           <FaUserCircle size={50} className='my-3'/>
-          <p> {login.user.username} - {login.isDocente ? "Docente"  : (login.isPadrefam ? "PadreFamilia" : "Estudiante")}</p>
+          <h2> {login.user.username} </h2>
+          <h2>{login.isDocente ? "(Docente)"  : (login.isPadrefam ? "(PadreFamilia)" : "(Estudiante)")}</h2>
         </SidebarMenu.Brand>
+        
         <SidebarMenu.Toggle className="sidebar-toggle" onClick={toggleSidebar}>
           <FaBars className="icon" /> 
         </SidebarMenu.Toggle>

@@ -17,7 +17,7 @@ return(
           <EncuestaModal show={mostrarEncuesta} handleClose={cerrarEncuesta} />
           <TituloPorPagina
           titulo="Mis Cursos"/>
-          <h2 className="ms-4 display-5">Selecciona el curso al que quiere ingresar</h2>
+          <h2 className="ms-4">Selecciona el curso al que quiere ingresar</h2>
           <div className="courses-selection">
           <img src={nino}  alt="Decoración inferior izquierda" className="bottom-left-image" />
           <img src={nina} alt="Decoración superior derecha" className="top-right-image" />
