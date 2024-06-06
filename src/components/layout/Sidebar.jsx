@@ -1,30 +1,30 @@
 import SidebarMenu from 'react-bootstrap-sidebar-menu';
 import { NavLink } from "react-router-dom";
-import { FaBars ,FaHome, FaBook, FaChartLine, FaCog , FaUserCircle} from 'react-icons/fa';
+import { FaBars, FaHome, FaBook, FaChartLine, FaCog, FaUserCircle } from 'react-icons/fa';
 import { PiStudentDuotone } from "react-icons/pi";
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { SidebarContext } from '../../context/SidebarContext';
 import { AuthContext } from '../../auth/context/AuthContext';
 
 export const Sidebar = () => {
-
-  const toggleSidebar = () => {
-    setIsExpanded(!isExpanded); 
-  };
   const { login } = useContext(AuthContext);
   const { isExpanded, setIsExpanded } = useContext(SidebarContext);
+
+  const toggleSidebar = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
-    <SidebarMenu className={isExpanded ? 'expanded' : 'collapsed'}>
+    <SidebarMenu className={`sidebar-menu ${isExpanded ? 'expanded' : 'collapsed'}`}>
       <SidebarMenu.Header>
-        <SidebarMenu.Brand>
-          <FaUserCircle size={50} className='my-3'/>
-          <h2> {login.user.username} </h2>
-          <h2>{login.isDocente ? "(Docente)"  : (login.isPadrefam ? "(PadreFamilia)" : "(Estudiante)")}</h2>
+        <SidebarMenu.Brand className="sidebar-menu-brand">
+          <FaUserCircle size={50} className='my-3' />
+          <h2>{login.user.username}</h2>
+          <h2>{login.isDocente ? "(Docente)" : (login.isPadrefam ? "(PadreFamilia)" : "(Estudiante)")}</h2>
         </SidebarMenu.Brand>
-        
-        <SidebarMenu.Toggle className="sidebar-toggle" onClick={toggleSidebar}>
-          <FaBars className="icon" /> 
-        </SidebarMenu.Toggle>
+        <div className="desktop-toggle" onClick={toggleSidebar}>
+          <FaBars className="icon" />
+        </div>
       </SidebarMenu.Header>
       <SidebarMenu.Body>
         <NavLink to="/inicio" className="sidebar-menu-nav-link">
@@ -32,24 +32,29 @@ export const Sidebar = () => {
           <span>INICIO</span>
         </NavLink>
         <NavLink to="/cursos" className="sidebar-menu-nav-link">
-          <FaBook size={25} className="icon"/>
+          <FaBook size={25} className="icon" />
           <span>CURSOS</span>
         </NavLink>
         <NavLink to="/reportes" className="sidebar-menu-nav-link">
-          <FaChartLine size={25} className="icon"/>
+          <FaChartLine size={25} className="icon" />
           <span>REPORTES</span>
         </NavLink>
         <NavLink to="/ajustes" className="sidebar-menu-nav-link">
-          <FaCog size={25} className="icon"/>
+          <FaCog size={25} className="icon" />
           <span>AJUSTES</span>
         </NavLink>
-        {login.isDocente 
-        &&
-        <NavLink to="/users" className="sidebar-menu-nav-link">
-          <PiStudentDuotone  size={25} className="icon"/>
-          <span>ALUMNOS</span>
+        {login.isDocente && (
+          <div>
+          <NavLink to="/users" className="sidebar-menu-nav-link">
+            <PiStudentDuotone size={25} className="icon" />
+            <span>ALUMNOS</span>
+          </NavLink>
+          <NavLink to="/gestion" className="sidebar-menu-nav-link">
+          <PiStudentDuotone size={25} className="icon" />
+          <span>Gestión</span>
         </NavLink>
-        }
+        </div>
+        )}
       </SidebarMenu.Body>
     </SidebarMenu>
   );

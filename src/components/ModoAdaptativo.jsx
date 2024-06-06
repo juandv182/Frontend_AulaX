@@ -17,7 +17,7 @@ export const ModoAdaptativo = () =>{
           </div>
           {tipoCurso==="matematicas"?<h1 className='m-1 ms-5 text-primary'> Matemáticas </h1> : <h1 className='m-1 ms-5 text-success'> Ciencia y Tecnología </h1>}
           
-          <h2 className='ms-5 display-7 fw-light'>Seleccione lo que desea ver</h2>
+          <h2 className='ms-5'>Seleccione lo que desea ver</h2>
           <div className="courses-selection">
           
             <button onClick={()=> navigate(`/cursos/${tipoCurso}/biblioteca`)} className="course-card btn btn-light btn-lg d-flex align-items-center justify-content-center text-dark">

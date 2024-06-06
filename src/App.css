@@ -14,28 +14,33 @@
 /*  Globales **/
 html {
   font-size: 62.5%;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   scroll-snap-type: y mandatory;
 }
+
 body {
   font-size: 16px; /* 1rem = 10px */
-  background-color:#bcebfe;
+  background-color: #cae8f4;
 }
-h1{
+
+h1 {
   font-family: var(--fontPrimaria);
-  font-size:x-large;
+  font-size: x-large;
   font-weight: bold;
 }
-h2{
+
+h2 {
   font-family: var(--fontSecundaria);
 }
+
 .app-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; 
-  padding-top: 6rem; 
+  min-height: 100vh;
+  padding-top: 6rem;
   transition: margin-left 0.5s ease;
 }
+
 .app-container.expanded {
   margin-left: 27rem; /* Ancho del sidebar cuando está expandido */
 }
@@ -43,146 +48,168 @@ h2{
 .app-container.collapsed {
   margin-left: 8.5rem; /* Ancho del sidebar cuando está contraído */
 }
+
+@media (max-width: 768px) {
+  .app-container.collapsed {
+    margin-left: 0; /* Ancho del sidebar cuando está contraído en móviles */
+  }
+}
 /* Sidebar.css */
 
-/* Aplica el color de fondo al contenedor principal del sidebar */
 .sidebar-menu {
   border-radius: 1.5rem;
   margin: 1rem;
-  width: 25rem; /* Ajusta según tus necesidades */
-  background:  var(--secundario);
+  width: 25rem;
+  background: #5e87a5;
   overflow: hidden;
-  min-height: 96vh; /* Asegura que el sidebar se extienda a la altura completa de la ventana */
-
+  min-height: 96vh;
   position: fixed;
   z-index: 100;
+  transition: transform 0.3s ease, width 0.3s ease;
 }
 
+.sidebar-menu.collapsed {
+  width: 60px; /* Ancho contraído en pantallas grandes */
+}
+
+.desktop-toggle {
+  display: block;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-left: 2rem;
+  margin-right: 3rem;
+  font-size: 2.5rem;
+}
+
+@media (max-width: 768px) {
+  .sidebar-menu {
+    width: 60px;
+    transform: translateX(-120%);
+  }
+
+  .sidebar-menu.expanded {
+    width: 25rem;
+    transform: translateX(0);
+  }
+
+  .desktop-toggle {
+    display: none;
+  }
+}
 
 /* Estilos para la marca del sidebar, por ejemplo, un logotipo o título */
 .sidebar-menu-brand {
-  display: block; /* Asegura que la marca ocupe todo el ancho disponible */
-  padding: 1rem; /* Espacio alrededor del contenido del header */
-  text-align: center; /* Centra el contenido horizontalmente */
-  margin-bottom: 1rem; /* Espacio después del header */
-  color: white; /* Color del texto en el header */
+  display: block;
+  padding: 1rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.sidebar-menu-brand h2 {
+  display: block;
+}
+
+.sidebar-menu.collapsed .sidebar-menu-brand h2 {
+  display: none; /* Ocultar texto de usuario solo en pantallas grandes */
+}
+
+@media (max-width: 768px) {
+  .sidebar-menu.collapsed .sidebar-menu-brand h2 {
+    display: block; /* Mostrar texto de usuario en dispositivos móviles */
+  }
 }
 
 /* Estilos para los enlaces dentro del sidebar */
 .sidebar-menu-nav-link {
-  display: block;
-  color: white; /* Color del texto de los enlaces */
-  font-family:  var(--fontSecundaria);
-  background-color: var(--naranja); /* Mantén el naranja para el fondo de los botones */
+  display: flex;
+  align-items: center;
+  color: white;
+  font-family: var(--fontSecundaria);
+  background-color: var(--naranja);
   padding: 1rem 2rem;
-  text-decoration: none; /* No subrayado */
-  margin: 1rem; /* Margen para espaciado */
-  border-radius: 2rem; /* Bordes redondeados para los botones */
-  transition: background-color 0.3s; /* Suaviza el cambio de color al interactuar */
+  text-decoration: none;
+  margin: 1rem;
+  border-radius: 2rem;
+  transition: background-color 0.3s, padding 0.3s;
 }
 
-/* Efecto al pasar el mouse sobre los botones */
 .sidebar-menu-nav-link:hover {
-  background-color: var(--azulSecundario); /* Un naranja más oscuro al pasar el mouse */
+  background-color: var(--azulSecundario);
 }
 
-/* Ajusta estos estilos para manejar cómo quieres que los iconos y textos se vean y alineen */
-.sidebar-menu-nav-link  .icon {
-  margin-right: 1rem; /* Margen a la derecha del ícono */
+.sidebar-menu-nav-link .icon {
+  margin-right: 1rem;
 }
 
-
-.sidebar-menu-nav-link.active {
-  background-color: var(--azulSecundario); /* Color para el enlace activo */
-}
-/* Responsividad: Ajustes para pantallas más pequeñas */
-@media (max-width: 768px) {
-  .sidebar-menu {
-      width: 60px; /* Ancho más pequeño para dispositivos móviles */
-  }
-
-  /* Oculta el texto para dispositivos móviles */
-  .sidebar-menu-nav-title,
-  .sidebar-menu-brand div {
-      display: none;
-  }
-
-  /* Aumenta el tamaño de los iconos para dispositivos móviles */
-  .sidebar-menu-nav-icon {
-      font-size: 1.5rem;
-
-  }
-}
-
-
-.sidebar-menu.expanded {
-  width: 25rem; /* Ancho cuando está expandido */
-  
-}
-
-.sidebar-menu.collapsed {
-  width: 7rem; /* Ancho cuando está colapsado */
-  
-}
-
-/* Estilos para ocultar texto y mostrar solo íconos cuando el sidebar está contraído */
 .sidebar-menu.collapsed .sidebar-menu-nav-link {
-  justify-content: center; /* Centra el ícono en el botón */
-  padding: 1.5rem; /* Ajusta el padding para tener un área de clic adecuada */
+  justify-content: center;
+  padding: 1rem;
 }
 
-.sidebar-menu.collapsed .sidebar-menu-nav-link span,
-.sidebar-menu.collapsed .sidebar-menu-nav-link .nav-text {
-  display: none; /* Oculta el texto cuando está contraído */
+.sidebar-menu.collapsed .sidebar-menu-nav-link span {
+  display: none;
+}
+.sidebar-menu.collapsed .sidebar-menu-nav-link .icon {
+  font-size: 2rem; /* Ajusta el tamaño de los íconos */
+  margin-right: 0; /* Elimina el margen derecho para centrar los íconos */
+}
+.sidebar-menu-nav-link.active {
+  background-color: var(--azulSecundario);
 }
 
-.sidebar-menu.collapsed .sidebar-menu-nav-link .fa {
-  margin-right: 0; /* Elimina el margen cuando no hay texto */
-}
-.sidebar-toggle {
-  background: none;
-  border: none;
-  color: white; 
-  cursor: pointer;
-  
-}
-.sidebar-toggle .icon {
-  font-size: 3rem; 
-}
-.sidebar-toggle:focus {
-  outline: none;
-}
+
 /*Componentes*/
 .top-bar {
   display: flex;
   width: 100%;
   height: 7.5rem;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  background-color: var(--azulSecundario); /* Ajusta el color según tu diseño */
-  
+  background-color: var(--azulSecundario);
   position: fixed;
-  z-index: 10; /* Un valor menor que el del sidebar */
+  z-index: 10;
+  padding: 0 1rem;
 }
-.top-bar-logo  {
+
+.top-bar-logo {
   display: flex;
-  justify-content: space-evenly;
-  flex-grow: 1; 
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
+
 .top-bar-logo img {
   margin-top: 0;
-  height: 8.5rem; 
+  height: 8.5rem;
   width: 9.5rem;
 }
 
-
-.top-bar-actions  {
-  color: white; /* Color de los íconos */
-  justify-content: flex-end;
-  font-size: 3rem; /* Tamaño de los íconos */
-  margin-left: 1rem; /* Espaciado entre íconos */
-  cursor: pointer; 
+.top-bar-actions {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 3rem;
+  cursor: pointer;
+  position: absolute;
+  right: 1rem;
 }
+
+.icon.menu-icon {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .icon.menu-icon {
+    display: block;
+  }
+}
+
 
 /**/
 .page-title-bar {
