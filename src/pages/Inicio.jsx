@@ -27,6 +27,15 @@ export const    Inicio = ({ onSelectResource }) => {
     const findUser = async() => {
       try {
           const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/users/username/${login.user.username}`);
+          console.log(response);
+          localStorage.setItem("username",response.data["username"]);
+          localStorage.setItem("id",response.data["id"]);
+          localStorage.setItem("email",response.data["email"]);
+          localStorage.setItem("fechaNacimiento",response.data["fechaNacimiento"]);
+          localStorage.setItem("docente",response.data["docente"]);
+          localStorage.setItem("padrefam",response.data["padrefam"]);
+          localStorage.setItem("id_hijo",response.data["id_hijo"]);
+          
           if(login.isPadrefam){
             const responseHijo = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/users/${response.data.id_hijo}`).
             then(responseHijo =>
@@ -35,7 +44,7 @@ export const    Inicio = ({ onSelectResource }) => {
             
           }
           setUser(response.data);
-          console.log(user);
+          
 
       } catch (error) {
           console.error(error);

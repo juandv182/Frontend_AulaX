@@ -54,6 +54,14 @@ export const useAuth = () => {
         sessionStorage.removeItem('token');
         sessionStorage.removeItem('login');
         sessionStorage.clear();
+        localStorage.removeItem("username");
+        localStorage.removeItem("id");
+        localStorage.removeItem("email");
+        localStorage.removeItem("docente");
+        localStorage.removeItem("padrefam");
+        localStorage.removeItem("fechaNacimiento");
+        localStorage.removeItem("id_hijo");
+        localStorage.clear();
     }
     return {
         login,

@@ -5,20 +5,25 @@ import axios from 'axios';
 export const EncuestaModal = ({ show, handleClose }) => {
   const [paginaActual, setPaginaActual] = useState(0);
   const [preguntasDeLaEncuesta, setPreguntasDeLaEncuesta] = useState([]);
-  
+  const [respuestas, setRespuestas] = useState({});
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         // Primera petición para obtener el ID del cuestionario
         const responseType = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/quizzes/4/TypeQuizzId`);
-        console.log(responseType.data[0].id)
         const idObtenida = responseType.data[0].id;
 
         // Segunda petición para obtener las preguntas y alternativas
         const responseQuestions = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/quizzes/${idObtenida}/questions`);
         const preguntas = responseQuestions.data.map(pregunta => ({
+          id: pregunta.id,
           texto: pregunta.name,
-          opciones: pregunta.alternatives.map(alt => alt.value).sort((a, b) => a - b)
+          opciones: pregunta.alternatives.map(alt => ({
+            ...alt,
+            value: alt.value,
+            is_marked: false,
+          })).sort((a, b) => a.value - b.value),
         }));
 
         setPreguntasDeLaEncuesta(preguntas);
@@ -30,13 +35,37 @@ export const EncuestaModal = ({ show, handleClose }) => {
     fetchData();
   }, []);
 
+  const handleSelectOption = (preguntaId, alternativaId) => {
+    setRespuestas(prev => ({
+      ...prev,
+      [preguntaId]: alternativaId,
+    }));
+  };
+
+  const handleSubmit = async () => {
+    try {
+      for (const [preguntaId, alternativaId] of Object.entries(respuestas)) {
+        const pregunta = preguntasDeLaEncuesta.find(p => p.id === parseInt(preguntaId));
+        const alternativa = pregunta.opciones.find(o => o.id === parseInt(alternativaId));
+        await axios.put(`${import.meta.env.VITE_API_BASE_URL}/alternatives/${alternativaId}`, {
+          ...alternativa,
+          is_marked: true,
+          question: { id: preguntaId }
+        });
+      }
+      handleClose();
+    } catch (error) {
+      console.error('Error submitting answers:', error);
+    }
+  };
+
   const preguntaActual = preguntasDeLaEncuesta[paginaActual];
 
   const irALaSiguientePregunta = () => {
     if (paginaActual < preguntasDeLaEncuesta.length - 1) {
       setPaginaActual(p => p + 1);
     } else {
-      handleClose();
+      handleSubmit();
     }
   };
 
@@ -79,10 +108,12 @@ export const EncuestaModal = ({ show, handleClose }) => {
                     type="radio"
                     name={`pregunta-${paginaActual}`}
                     id={`opcion-${index}`}
-                    value={opcion}
+                    value={opcion.id}
+                    checked={respuestas[preguntaActual.id] === opcion.id}
+                    onChange={() => handleSelectOption(preguntaActual.id, opcion.id)}
                   />
                   <label className="form-check-label" htmlFor={`opcion-${index}`}>
-                    {opcion}
+                    {opcion.value}
                   </label>
                 </div>
               ))}
