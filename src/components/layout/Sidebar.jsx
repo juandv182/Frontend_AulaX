@@ -5,6 +5,7 @@ import { PiStudentDuotone } from "react-icons/pi";
 import { useContext } from 'react';
 import { SidebarContext } from '../../context/SidebarContext';
 import { AuthContext } from '../../auth/context/AuthContext';
+import user from '../../assets/user.png';
 
 export const Sidebar = () => {
   const { login } = useContext(AuthContext);
@@ -18,9 +19,9 @@ export const Sidebar = () => {
     <SidebarMenu className={`sidebar-menu ${isExpanded ? 'expanded' : 'collapsed'}`}>
       <SidebarMenu.Header>
         <SidebarMenu.Brand className="sidebar-menu-brand">
-          <FaUserCircle size={50} className='my-3' />
+          <img src={user} alt="User"  className='my-3 img-fluid'/>
           <h2>{localStorage.getItem("nombres") + ' ' + localStorage.getItem("apellidos")}</h2>
-          <h2>{login.isDocente ? "(Docente)" : (login.isPadrefam ? "(PadreFamilia)" : "(Estudiante)")}</h2>
+          <h2 classname="fst-italic">{login.isDocente ? "(Docente)" : (login.isPadrefam ? "(PadreFamilia)" : "(Estudiante)")}</h2>
         </SidebarMenu.Brand>
         <div className="desktop-toggle" onClick={toggleSidebar}>
           <FaBars className="icon" />

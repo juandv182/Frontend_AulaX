@@ -7,6 +7,8 @@ export const EncuestaModal = ({ show, handleClose }) => {
   const [preguntasDeLaEncuesta, setPreguntasDeLaEncuesta] = useState([]);
   const [respuestas, setRespuestas] = useState({});
   const [idCuestionario, setIdCuestionario] = useState(null);
+  const [resultado, setResultado] = useState(null);
+
   const calcularEdad = (fechaNacimiento) => {
     const hoy = new Date();
     const fechaNac = new Date(fechaNacimiento);
@@ -74,9 +76,11 @@ export const EncuestaModal = ({ show, handleClose }) => {
       const finalArray = [localStorage.getItem("genero")==="false"? 0 : 1, calcularEdad(localStorage.getItem("fechaNacimiento")), ...markedAlternatives];
       console.log(finalArray);
       // Realizar la petición POST con el arreglo final
-      await axios.post('http://127.0.0.1:8000/predict', finalArray);
-
-      handleClose();
+      const responsePredict = await axios.post('http://127.0.0.1:8000/predict', finalArray);
+      setResultado(responsePredict.data.result);
+      console.log(responsePredict.data.result);
+      localStorage.setItem("pref_aprendizaaje",responsePredict.data.result);
+      //handleClose();
     } catch (error) {
       console.error('Error submitting answers:', error);
     }
@@ -116,11 +120,16 @@ export const EncuestaModal = ({ show, handleClose }) => {
 
   return (
     <Modal show={show} onHide={handleClose} centered dialogClassName="custom-modal">
-      <Modal.Header closeButton>
-        <Modal.Title>Cuestionario Preferencias Aprendizaje</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        {preguntaActual ? (
+    <Modal.Header closeButton>
+      <Modal.Title>Cuestionario Preferencias Aprendizaje</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
+      {resultado ? (
+        <div>
+          <h3>Resultado: {resultado}</h3>
+        </div>
+      ) : (
+        preguntaActual ? (
           <>
             <p>{preguntaActual.texto}</p>
             <div className="mb-3">
@@ -144,14 +153,21 @@ export const EncuestaModal = ({ show, handleClose }) => {
           </>
         ) : (
           <p>Cargando preguntas...</p>
-        )}
-      </Modal.Body>
-      <Modal.Footer>
-        {renderPagination()}
-        <Button variant="primary" className="custom-button" onClick={irALaSiguientePregunta}>
-          {paginaActual === preguntasDeLaEncuesta.length - 1 ? 'Terminar Cuestionario' : 'Siguiente'}
-        </Button>
-      </Modal.Footer>
-    </Modal>
+        )
+      )}
+    </Modal.Body>
+    <Modal.Footer>
+      {resultado ? (
+        <Button variant="secondary" onClick={handleClose}>Cerrar</Button>
+      ) : (
+        <>
+          {renderPagination()}
+          <Button variant="primary" className="custom-button" onClick={irALaSiguientePregunta}>
+            {paginaActual === preguntasDeLaEncuesta.length - 1 ? 'Terminar Cuestionario' : 'Siguiente'}
+          </Button>
+        </>
+      )}
+    </Modal.Footer>
+  </Modal>
   );
 };

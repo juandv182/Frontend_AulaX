@@ -5,6 +5,8 @@ import { IoLibraryOutline } from "react-icons/io5";
 import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import nino from '../assets/niño.png';
 import nina from '../assets/niña.png';
+import library from '../assets/library.png';
+import adaptative from '../assets/adaptative.png';
 export const Curso = () =>{
     const { tipoCurso } = useParams();
     const navigate = useNavigate();
@@ -24,11 +26,11 @@ export const Curso = () =>{
           <img src={nino}  alt="Decoración inferior izquierda" className="bottom-left-image" />
           <img src={nina} alt="Decoración superior derecha" className="top-right-image" />
             <button onClick={()=> navigate(`/cursos/${tipoCurso}/biblioteca`)} className="course-card btn btn-light btn-lg d-flex align-items-center justify-content-center text-dark">
-                <IoLibraryOutline size={100} className="text-dark" />
+              <img src={library} alt="Library"  className='img-fluid'/> 
               <h2 className='display-1'>Biblioteca de Recursos</h2>
             </button>
             <button onClick={()=> navigate(`/cursos/${tipoCurso}/modoAdaptativo`)} className="course-card btn btn-light btn-lg d-flex align-items-center justify-content-center text-dark">
-            <LiaChalkboardTeacherSolid size={100} className="text-dark"/>
+              <img src={adaptative} alt="Adaptative"  className='img-fluid'/> 
               <h2 className='display-1'>Modo Adaptativo</h2>
             </button>
           </div>
