@@ -61,6 +61,9 @@ export const useAuth = () => {
         localStorage.removeItem("padrefam");
         localStorage.removeItem("fechaNacimiento");
         localStorage.removeItem("id_hijo");
+        localStorage.removeItem("nombres");
+        localStorage.removeItem("apellidos");
+        localStorage.removeItem("genero");
         localStorage.clear();
     }
     return {

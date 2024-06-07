@@ -35,6 +35,9 @@ export const    Inicio = ({ onSelectResource }) => {
           localStorage.setItem("docente",response.data["docente"]);
           localStorage.setItem("padrefam",response.data["padrefam"]);
           localStorage.setItem("id_hijo",response.data["id_hijo"]);
+          localStorage.setItem("nombres",response.data["nombres"]);
+          localStorage.setItem("apellidos",response.data["apellidos"]);
+          localStorage.setItem("genero",response.data["genero"]);
           
           if(login.isPadrefam){
             const responseHijo = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/users/${response.data.id_hijo}`).

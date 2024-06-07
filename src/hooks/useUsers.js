@@ -16,6 +16,9 @@ const initialUserForm = {
     docente: false,
     padrefam: false,
     id_hijo: 0,
+    nombres:'',
+    apellidos:'',
+    genero:false,
 }
 
 const initialErrors = {

@@ -71,7 +71,7 @@ export const EncuestaModal = ({ show, handleClose }) => {
       const markedAlternatives = responseMarkedAlternatives.data.map(alt => parseInt(alt.value));
 
       // Añadir 0 y 10 al inicio del arreglo
-      const finalArray = [0, calcularEdad(localStorage.getItem("fechaNacimiento")), ...markedAlternatives];
+      const finalArray = [localStorage.getItem("genero")==="false"? 0 : 1, calcularEdad(localStorage.getItem("fechaNacimiento")), ...markedAlternatives];
       console.log(finalArray);
       // Realizar la petición POST con el arreglo final
       await axios.post('http://127.0.0.1:8000/predict', finalArray);

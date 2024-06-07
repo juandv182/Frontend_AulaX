@@ -26,7 +26,7 @@ export const RegisterPage = () => {
         const { name, value } = e.target;
         setUserForm({
             ...userForm,
-            [name]: value
+            [name]: name === 'genero' ? (value === 'true') : value
         });
         console.log(userForm)
     };
@@ -75,7 +75,7 @@ export const RegisterPage = () => {
         e.preventDefault();
         // Lógica para enviar el formulario
         handlerAddUser(userForm);
-        console.log(errors)
+        console.log(userForm)
     };
 
     return (
@@ -114,7 +114,7 @@ export const RegisterPage = () => {
                                 <option value="">Seleccione a su hijo</option>
                                 {users.filter(user => !user.docente && !user.padrefam).map(user => (
                                     <option key={user.id} value={user.id}>
-                                        {user.username} ({user.email}) {user.docente ? "Docente"  : (user.padrefam ? "PadreFamilia" : "Alumno")}
+                                        {user.username} ({user.email}) {user.docente ? "(Docente)"  : (user.padrefam ? "(PadreFamilia)" : "(Alumno)")}
                                     </option>
                                 ))}
                             </select>
@@ -133,6 +133,43 @@ export const RegisterPage = () => {
                 
                         />
                     <p className="text-danger">{ errors?.username}</p>
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="nombres" className="form-label">Nombres</label>
+                        <input
+                        type="text"
+                        className="form-control"
+                        id="nombres"
+                        name="nombres"
+                        placeholder='Nombres'
+                        value={userForm.nombres}
+                        onChange={handleChange}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="apellidos" className="form-label">Apellidos</label>
+                        <input
+                        type="text"
+                        className="form-control"
+                        id="apellidos"
+                        name="apellidos"
+                        placeholder='Apellidos'
+                        value={userForm.apellidos}
+                        onChange={handleChange}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="genero" className="form-label">Género</label>
+                        <select
+                        className="form-select"
+                        id="genero"
+                        name="genero"
+                        value={userForm.genero}
+                        onChange={handleChange}
+                        >
+                        <option value={false}>Masculino</option>
+                        <option value={true}>Femenino</option>
+                        </select>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="email" className="form-label">Email</label>

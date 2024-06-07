@@ -19,7 +19,7 @@ export const Sidebar = () => {
       <SidebarMenu.Header>
         <SidebarMenu.Brand className="sidebar-menu-brand">
           <FaUserCircle size={50} className='my-3' />
-          <h2>{login.user.username}</h2>
+          <h2>{localStorage.getItem("nombres") + ' ' + localStorage.getItem("apellidos")}</h2>
           <h2>{login.isDocente ? "(Docente)" : (login.isPadrefam ? "(PadreFamilia)" : "(Estudiante)")}</h2>
         </SidebarMenu.Brand>
         <div className="desktop-toggle" onClick={toggleSidebar}>
