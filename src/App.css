@@ -108,6 +108,19 @@ h2 {
   color: white;
 }
 
+.user-info {
+  border: 1.5px solid white;
+  background-color:#4a6e94; /* Fondo diferente */
+  border-radius: 1rem;
+  
+  text-align: center;
+ 
+}
+
+.user-info h2 {
+  margin: 0;
+}
+
 .sidebar-menu-brand h2 {
   display: block;
 }
@@ -152,10 +165,12 @@ h2 {
 .sidebar-menu.collapsed .sidebar-menu-nav-link span {
   display: none;
 }
+
 .sidebar-menu.collapsed .sidebar-menu-nav-link .icon {
   font-size: 2rem; /* Ajusta el tamaño de los íconos */
   margin-right: 0; /* Elimina el margen derecho para centrar los íconos */
 }
+
 .sidebar-menu-nav-link.active {
   background-color: var(--azulSecundario);
 }

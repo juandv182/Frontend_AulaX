@@ -19,9 +19,11 @@ export const Sidebar = () => {
     <SidebarMenu className={`sidebar-menu ${isExpanded ? 'expanded' : 'collapsed'}`}>
       <SidebarMenu.Header>
         <SidebarMenu.Brand className="sidebar-menu-brand">
-          <img src={user} alt="User"  className='my-3 img-fluid'/>
+          <div className="user-info">
+          <img src={user} alt="User"  className='img-fluid'/>
           <h2>{localStorage.getItem("nombres") + ' ' + localStorage.getItem("apellidos")}</h2>
           <h2 classname="fst-italic">{login.isDocente ? "(Docente)" : (login.isPadrefam ? "(PadreFamilia)" : "(Estudiante)")}</h2>
+          </div>
         </SidebarMenu.Brand>
         <div className="desktop-toggle" onClick={toggleSidebar}>
           <FaBars className="icon" />
