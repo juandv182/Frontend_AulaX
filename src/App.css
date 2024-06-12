@@ -263,6 +263,7 @@ h2 {
   text-align: center;
   border-radius: 1.5rem;
   background-color:var(--amarilloSuave); 
+  border: 2px solid #ffd700;
   color: black;
 
 }
@@ -323,6 +324,7 @@ h2 {
   font-weight: bold; /* Fuente en negrita para el texto del botón */
   cursor: pointer; /* Cursor de tipo puntero */
   transition: background-color 0.2s; /* Transición suave para el efecto de hover */
+  font-size: 1.2rem;;
 }
 .competencia-btn.active {
 
@@ -487,4 +489,46 @@ button.btn-warning {
   font-size: 1.2rem;
 }
 
+/*Ajustes*/
+.ajustes-container {
+  background-color: #cae8f4;
+  min-height: 100vh;
+  padding-top: 20px;
+}
 
+.ajustes-title {
+  text-align: left;
+  color: #ffffff;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #5e87a5;
+}
+
+.ajustes-card {
+  border-radius: 15px;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ajustes-item {
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.icon-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-col {
+  display: flex;
+  align-items: center;
+}
+
+.arrow-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

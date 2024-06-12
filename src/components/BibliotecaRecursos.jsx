@@ -71,7 +71,7 @@ export const BibliotecaRecursos = () => {
           {tipoCurso==="matematicas"?<h1 className='m-1 ms-5 text-primary'> Matemáticas </h1> : <h1 className='m-1 ms-5 text-success'> Ciencia y Tecnología </h1>}
           <h2 className="m-1 ms-5">Temas por competencias</h2>
             <div className="competencias-selector">
-                <button className="competencia-btn" onClick={() => setCompetenciaSeleccionada(competencias)}>Ver todos los temas</button>
+                <button className="competencia-btn" onClick={() => setCompetenciaSeleccionada(competencias)}>Ver todas</button>
                 {competencias.map(competencia => (
                     <button key={competencia.id} className={`competencia-btn ${competencia.id === competenciaSeleccionada ? 'active' : ''}`} onClick={() => setCompetenciaSeleccionada(competencia.id)}>
                         {competencia.name}

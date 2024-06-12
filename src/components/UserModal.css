@@ -1,0 +1,15 @@
+.user-modal-body {
+    background-color: #5e87a5; /* Color de fondo según el diseño */
+    border-radius: 15px;
+    padding: 20px;
+    color: white;
+  }
+  
+  
+  button.btn-warning {
+    background-color: #ffeb3b; /* Color del botón "Editar Perfil" */
+    border: none;
+    border-radius: 10px;
+  }
+
+  
