@@ -79,7 +79,9 @@ export const EncuestaModal = ({ show, handleClose }) => {
       const responsePredict = await axios.post('http://127.0.0.1:8000/predict', finalArray);
       setResultado(responsePredict.data.result);
       console.log(responsePredict.data.result);
-      localStorage.setItem("pref_aprendizaaje",responsePredict.data.result);
+      localStorage.removeItem("preferenciaAprendizaje");
+      localStorage.setItem("preferenciaAprendizaje",responsePredict.data.result);
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/users/${localStorage.getItem("id")}/user/${responsePredict.data.result}/updatePreferenciasAprendizaje`, finalArray)
       //handleClose();
     } catch (error) {
       console.error('Error submitting answers:', error);

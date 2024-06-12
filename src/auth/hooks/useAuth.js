@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { loginReducer } from "../reducers/loginReducer";
 import { loginUser } from "../services/authService";
+import axios from "axios";
 
 const initialLogin = JSON.parse(sessionStorage.getItem('login')) || {
     isAuth: false,
@@ -47,10 +48,11 @@ export const useAuth = () => {
         }
     }
 
-    const handlerLogout = () => {
+    const handlerLogout =async () => {
         dispatch({
             type: 'logout',
         });
+        await axios.post(`${import.meta.env.VITE_API_BASE_URL}/users/${localStorage.getItem("id")}/logout`);
         sessionStorage.removeItem('token');
         sessionStorage.removeItem('login');
         sessionStorage.clear();
@@ -64,6 +66,8 @@ export const useAuth = () => {
         localStorage.removeItem("nombres");
         localStorage.removeItem("apellidos");
         localStorage.removeItem("genero");
+        localStorage.removeItem("preferenciaAprendizaje");
+        localStorage.removeItem("esPrimerLoguin");
         localStorage.clear();
     }
     return {

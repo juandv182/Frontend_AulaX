@@ -38,6 +38,12 @@ export const    Inicio = ({ onSelectResource }) => {
           localStorage.setItem("nombres",response.data["nombres"]);
           localStorage.setItem("apellidos",response.data["apellidos"]);
           localStorage.setItem("genero",response.data["genero"]);
+          localStorage.setItem("preferenciaAprendizaje",response.data["preferenciaAprendizaje"]);
+          localStorage.setItem("esPrimerLoguin",response.data["esPrimerLoguin"]);
+
+          if (response.data ) {
+            await axios.post(`${import.meta.env.VITE_API_BASE_URL}/users/${response.data["id"]}/login`);
+          }
           
           if(login.isPadrefam){
             const responseHijo = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/users/${response.data.id_hijo}`).

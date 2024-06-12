@@ -14,6 +14,7 @@ export const CuestionarioNivelCurso = () => {
     const [idCuestionario, setIdCuestionario] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [feedback, setFeedback] = useState([]);
+    const [quizResults, setQuizResults] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -40,10 +41,41 @@ export const CuestionarioNivelCurso = () => {
             [preguntaId]: alternativaId,
         }));
     };
-
     const handleSubmit = async () => {
-        // Implementar la lógica de envío de respuestas aquí
-        setShowModal(true);
+        try {
+            // Enviar PUT requests para actualizar is_marked de las alternativas seleccionadas
+            await Promise.all(Object.entries(respuestas).map(async ([preguntaId, alternativaId]) => {
+                let alternativa;
+                for (const competencia of Object.values(cuestionario)) {
+                    for (const unidad of Object.values(competencia)) {
+                        for (const tema of Object.values(unidad)) {
+                            const pregunta = tema.find(p => p.id === Number(preguntaId));
+                            if (pregunta) {
+                                alternativa = pregunta.alternatives.find(a => a.id === Number(alternativaId));
+                                if (alternativa) break;
+                            }
+                        }
+                        if (alternativa) break;
+                    }
+                    if (alternativa) break;
+                }
+
+                if (alternativa) {
+                    await axios.put(`${import.meta.env.VITE_API_BASE_URL}/alternatives/${alternativaId}`, {
+                        ...alternativa,
+                        is_marked: true,
+                        question: { id: Number(preguntaId) }
+                    });
+                }
+            }));
+             // Obtener resultados detallados del cuestionario
+             const responseResults = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/quizzes/${idCuestionario}/course/1/detailed-total-nota/${localStorage.getItem("id")}/User`);
+             setQuizResults(responseResults.data.quizResults);
+ 
+            setShowModal(true);
+        } catch (error) {
+            console.error('Error updating alternatives:', error);
+        }
     };
 
     const renderPreguntas = (competencia) => {
@@ -87,7 +119,26 @@ export const CuestionarioNivelCurso = () => {
             </div>
         );
     };
-
+    const renderFeedback = () => {
+        return quizResults.map((result, resultIndex) => (
+            
+            <div key={resultIndex}>
+                <h4>Quizz ID: {result.quizzId}</h4>
+                <h5>Nota: {result.nota}</h5>
+                {result.incorrectQuestions.map((questionInfo, questionIndex) => (
+                    <div key={questionIndex}>
+                        <p><strong>Competencia:</strong> {questionInfo.topic.competence.name}</p>
+                        <p><strong>Unidad:</strong> {questionInfo.topic.learningUnit.name}</p>
+                        <p><strong>Tema:</strong> {questionInfo.topic.name}</p>
+                        <p><strong>Pregunta:</strong> {questionInfo.question.name}</p>
+                        <p className='text-danger'><strong>Tu respuesta:</strong> {questionInfo.incorrectAlternative.value}</p>
+                        <p className='text-success'><strong>Respuesta correcta:</strong> {questionInfo.correctAlternative.value}</p>
+                        <hr />
+                    </div>
+                ))}
+            </div>
+        ));
+    };
     const competencias = Object.keys(cuestionario);
 
     const irAPaginaAnterior = () => {
@@ -149,14 +200,9 @@ export const CuestionarioNivelCurso = () => {
                     <Modal.Title>Retroalimentación del Cuestionario</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {feedback.map((item, index) => (
-                        <div key={index}>
-                            <p><strong>{item.texto}</strong></p>
-                            <p>Su respuesta: {item.seleccionada}</p>
-                            <p>Respuesta correcta: {item.correcta}</p>
-                            <hr />
-                        </div>
-                    ))}
+                    <h2 className="text-center">Retroalimentación del Cuestionario del Curso</h2>
+                    
+                    {renderFeedback()}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="primary" onClick={handleClose}>
