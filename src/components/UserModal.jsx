@@ -17,21 +17,21 @@ export const UserModal = ({ show, onHide, user }) => {
         <h3>{localStorage.getItem("nombres")} {localStorage.getItem("apellidos")}</h3>
         <p> <span className='font-weight-bold'>Username  :</span>       {localStorage.getItem("username")}</p>
         <hr></hr>
-        <p>{localStorage.getItem("email")}</p>
+        <p><span className='font-weight-bold'>Email  :</span>    {localStorage.getItem("email")}</p>
         <hr></hr>
-        <p>{localStorage.getItem("fechaNacimiento")}</p>
-        <hr></hr>
-
-        <p>{localStorage.getItem("genero")}</p>
-        <hr></hr>
-        <p>{localStorage.getItem("preferenciaAprendizaje")}</p>
+        <p><span className='font-weight-bold'>Fecha de Nacimiento  :</span>  {localStorage.getItem("fechaNacimiento")}</p>
         <hr></hr>
 
+        <p><span className='font-weight-bold'>Genero  :</span>  {localStorage.getItem("genero") =="true" ? "Femenino" : "Masculino"}</p>
+        <hr></hr>
+        <p><span className='font-weight-bold'>Preferencia de aprendizaje  :</span>  {localStorage.getItem("preferenciaAprendizaje")}</p>
+        <hr></hr>
 
-        <Button variant="warning" className="mt-3">Editar Perfil</Button>
+
+        <Button variant="warning" className="mt-3 custom-button">Editar Perfil</Button>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="warning" onClick={onHide}>Regresar</Button>
+        <Button variant="warning"  className="mt-3 custom-button" onClick={onHide}>Regresar</Button>
       </Modal.Footer>
     </Modal>
   );

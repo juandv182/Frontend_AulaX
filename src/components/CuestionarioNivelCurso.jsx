@@ -188,7 +188,7 @@ export const CuestionarioNivelCurso = () => {
                         <Pagination.Next onClick={irALaSiguientePagina} disabled={paginaActual === competencias.length - 1} />
                     </Pagination>
                 
-                    <button onClick={() => handleSubmit()} className="justify-content-end" disabled={Object.keys(respuestas).length === 0}>
+                    <button onClick={() => handleSubmit()} className="justify-content-end custom-button" disabled={Object.keys(respuestas).length === 0}>
                         Enviar
                     </button>
                 </div>
@@ -205,8 +205,8 @@ export const CuestionarioNivelCurso = () => {
                     {renderFeedback()}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={handleClose}>
-                        Ver Recurso Recomendado
+                    <Button variant="primary" className="custom-button" onClick={handleClose}>
+                        Ver Recursos Recomendado
                     </Button>
                 </Modal.Footer>
             </Modal>
