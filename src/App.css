@@ -532,3 +532,57 @@ button.btn-warning {
   justify-content: center;
   align-items: center;
 }
+/*Ruta Aprendizaje*/
+.ruta-container {
+  text-align: center;
+  padding: 3rem;
+}
+
+.timeline {
+  position: relative;
+  margin: 2rem 0;
+  padding: 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background: #ccc;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.timeline-item {
+  position: relative;
+  width: 100%;
+}
+
+.timeline-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.3s;
+  z-index: 1;
+}
+
+.timeline-icon.completed {
+  background: green;
+  color: white;
+}
+
+.timeline-icon.current {
+  background: blue;
+  color: white;
+}
+
+.current-topic {
+  font-size: 1.5rem;
+}

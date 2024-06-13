@@ -5,6 +5,7 @@ import { TituloPorPagina } from './layout/TituloPorPagina';
 import { RiArrowGoBackLine } from 'react-icons/ri';
 import { Modal, Button, Pagination } from 'react-bootstrap';
 import axios from 'axios';
+import { RutaDeRefuerzoTemas } from './RutaDeRefuerzoTemas';
 
 export const CuestionarioNivelCurso = () => {
     const { tipoCurso } = useParams();
@@ -13,7 +14,6 @@ export const CuestionarioNivelCurso = () => {
     const [respuestas, setRespuestas] = useState({});
     const [idCuestionario, setIdCuestionario] = useState(null);
     const [showModal, setShowModal] = useState(false);
-    const [feedback, setFeedback] = useState([]);
     const [quizResults, setQuizResults] = useState([]);
     const navigate = useNavigate();
 
@@ -157,9 +157,9 @@ export const CuestionarioNivelCurso = () => {
 
     const handleClose = () => {
         setShowModal(false);
-        const videoId = new URLSearchParams(new URL("https://www.youtube.com/watch?v=oexd_Dfic_Q").search).get('v');
-        navigate(`video-viewer/${videoId}`);
+        navigate("rutaRefuerzoTemas")
     };
+
 
     return (
         <>
@@ -206,7 +206,7 @@ export const CuestionarioNivelCurso = () => {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="primary" className="custom-button" onClick={handleClose}>
-                        Ver Recursos Recomendado
+                        Ver Recursos Recomendados
                     </Button>
                 </Modal.Footer>
             </Modal>
