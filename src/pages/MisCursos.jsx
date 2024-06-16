@@ -9,7 +9,8 @@ import science from '../assets/science.png';
 import { EncuestaModal } from "../components/EncuestaModal";
 import { useState } from "react";
 export const MisCursos = () => {
-  const [mostrarEncuesta, setMostrarEncuesta] = useState(true);
+  let estadoInicialModal = localStorage.getItem("esPrimerLoguin")=="true"? true : false;
+  const [mostrarEncuesta, setMostrarEncuesta] = useState(estadoInicialModal);
   const cerrarEncuesta = () => {
     setMostrarEncuesta(false);
     // Aquí puedes manejar lo que sucede después de que el usuario completa la encuesta

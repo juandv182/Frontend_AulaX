@@ -21,15 +21,14 @@ export const EncuestaModal = ({ show, handleClose }) => {
   
     return edad;
   };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Primera petición para obtener el ID del cuestionario
         const responseType = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/quizzes/4/TypeQuizzId`);
         const idObtenida = responseType.data[0].id;
         setIdCuestionario(idObtenida);
 
-        // Segunda petición para obtener las preguntas y alternativas
         const responseQuestions = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/quizzes/${idObtenida}/questions`);
         const preguntas = responseQuestions.data.map(pregunta => ({
           id: pregunta.id,
@@ -59,6 +58,12 @@ export const EncuestaModal = ({ show, handleClose }) => {
 
   const handleSubmit = async () => {
     try {
+      // Verificar que todas las preguntas hayan sido respondidas
+      if (Object.keys(respuestas).length !== preguntasDeLaEncuesta.length) {
+        alert('Debe completar todas las preguntas antes de terminar el cuestionario.');
+        return;
+      }
+
       for (const [preguntaId, alternativaId] of Object.entries(respuestas)) {
         const pregunta = preguntasDeLaEncuesta.find(p => p.id === parseInt(preguntaId));
         const alternativa = pregunta.opciones.find(o => o.id === parseInt(alternativaId));
@@ -68,21 +73,20 @@ export const EncuestaModal = ({ show, handleClose }) => {
           question: { id: preguntaId }
         });
       }
-      // Nueva petición para obtener las alternativas marcadas
+
       const responseMarkedAlternatives = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/quizzes/${idCuestionario}/marked-alternatives`);
       const markedAlternatives = responseMarkedAlternatives.data.map(alt => parseInt(alt.value));
 
-      // Añadir 0 y 10 al inicio del arreglo
-      const finalArray = [localStorage.getItem("genero")==="false"? 0 : 1, calcularEdad(localStorage.getItem("fechaNacimiento")), ...markedAlternatives];
+      const finalArray = [localStorage.getItem("genero") === "false" ? 0 : 1, calcularEdad(localStorage.getItem("fechaNacimiento")), ...markedAlternatives];
       console.log(finalArray);
-      // Realizar la petición POST con el arreglo final
+
       const responsePredict = await axios.post('http://127.0.0.1:8000/predict', finalArray);
       setResultado(responsePredict.data.result);
       console.log(responsePredict.data.result);
       localStorage.removeItem("preferenciaAprendizaje");
-      localStorage.setItem("preferenciaAprendizaje",responsePredict.data.result);
-      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/users/${localStorage.getItem("id")}/user/${responsePredict.data.result}/updatePreferenciasAprendizaje`, finalArray)
-      //handleClose();
+      localStorage.setItem("preferenciaAprendizaje", responsePredict.data.result);
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/users/${localStorage.getItem("id")}/user/${responsePredict.data.result}/updatePreferenciasAprendizaje`, finalArray);
+      await axios.put(`${import.meta.env.VITE_API_BASE_URL}/quizzes/${idCuestionario}/unmark-alternatives`)
     } catch (error) {
       console.error('Error submitting answers:', error);
     }
@@ -121,55 +125,55 @@ export const EncuestaModal = ({ show, handleClose }) => {
   );
 
   return (
-    <Modal show={show} onHide={handleClose} centered dialogClassName="custom-modal">
-    <Modal.Header closeButton>
-      <Modal.Title>Cuestionario Preferencias Aprendizaje</Modal.Title>
-    </Modal.Header>
-    <Modal.Body>
-      {resultado ? (
-        <div>
-          <h3>Resultado: {resultado}</h3>
-        </div>
-      ) : (
-        preguntaActual ? (
-          <>
-            <p>{preguntaActual.texto}</p>
-            <div className="mb-3">
-              {preguntaActual.opciones.map((opcion, index) => (
-                <div key={index} className="form-check">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name={`pregunta-${paginaActual}`}
-                    id={`opcion-${index}`}
-                    value={opcion.id}
-                    checked={respuestas[preguntaActual.id] === opcion.id}
-                    onChange={() => handleSelectOption(preguntaActual.id, opcion.id)}
-                  />
-                  <label className="form-check-label" htmlFor={`opcion-${index}`}>
-                    {opcion.value}
-                  </label>
-                </div>
-              ))}
-            </div>
-          </>
+    <Modal show={show} onHide={() => {}} centered dialogClassName="custom-modal">
+      <Modal.Header>
+        <Modal.Title>Cuestionario Preferencias Aprendizaje</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        {resultado ? (
+          <div>
+            <h3>Resultado: {resultado}</h3>
+          </div>
         ) : (
-          <p>Cargando preguntas...</p>
-        )
-      )}
-    </Modal.Body>
-    <Modal.Footer>
-      {resultado ? (
-        <Button variant="secondary" onClick={handleClose}>Cerrar</Button>
-      ) : (
-        <>
-          {renderPagination()}
-          <Button variant="primary" className="custom-button" onClick={irALaSiguientePregunta}>
-            {paginaActual === preguntasDeLaEncuesta.length - 1 ? 'Terminar Cuestionario' : 'Siguiente'}
-          </Button>
-        </>
-      )}
-    </Modal.Footer>
-  </Modal>
+          preguntaActual ? (
+            <>
+              <p>{preguntaActual.texto}</p>
+              <div className="mb-3">
+                {preguntaActual.opciones.map((opcion, index) => (
+                  <div key={index} className="form-check">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name={`pregunta-${paginaActual}`}
+                      id={`opcion-${index}`}
+                      value={opcion.id}
+                      checked={respuestas[preguntaActual.id] === opcion.id}
+                      onChange={() => handleSelectOption(preguntaActual.id, opcion.id)}
+                    />
+                    <label className="form-check-label" htmlFor={`opcion-${index}`}>
+                      {opcion.value}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            <p>Cargando preguntas...</p>
+          )
+        )}
+      </Modal.Body>
+      <Modal.Footer>
+        {resultado ? (
+          <Button variant="secondary" onClick={handleClose}>Cerrar</Button>
+        ) : (
+          <>
+            {renderPagination()}
+            <Button variant="primary" className="custom-button" onClick={irALaSiguientePregunta}>
+              {paginaActual === preguntasDeLaEncuesta.length - 1 ? 'Terminar Cuestionario' : 'Siguiente'}
+            </Button>
+          </>
+        )}
+      </Modal.Footer>
+    </Modal>
   );
 };

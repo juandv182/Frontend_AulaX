@@ -6,9 +6,11 @@ import { useState } from 'react';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
-export const VisualizadorPDF = () => {
+export const VisualizadorPDF = ({url}) => {
     const location = useLocation();
-    const temaUrl = location.state;
+    let temaUrl = location.state;
+    if(temaUrl==null)
+        temaUrl=url;
     const navigate = useNavigate();
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);

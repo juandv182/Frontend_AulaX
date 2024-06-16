@@ -16,7 +16,8 @@ export const CuestionarioNivelCurso = () => {
     const [showModal, setShowModal] = useState(false);
     const [quizResults, setQuizResults] = useState([]);
     const navigate = useNavigate();
-
+    let idCurso=0;
+    {tipoCurso==="matematicas" ? idCurso=1 : idCurso=2}
     useEffect(() => {
         const fetchCuestionario = async () => {
             try {
@@ -155,8 +156,9 @@ export const CuestionarioNivelCurso = () => {
         }
     };
 
-    const handleClose = () => {
+    const handleClose = async () => {
         setShowModal(false);
+        await axios.put(`${import.meta.env.VITE_API_BASE_URL}/quizzes/${idCuestionario}/unmark-alternatives-course-quizz/${idCurso}/course`)
         navigate("rutaRefuerzoTemas")
     };
 

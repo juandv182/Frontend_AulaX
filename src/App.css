@@ -46,7 +46,7 @@ h2 {
 }
 
 .app-container.collapsed {
-  margin-left: 8.5rem; /* Ancho del sidebar cuando está contraído */
+  margin-left: 8rem; /* Ancho del sidebar cuando está contraído */
 }
 
 @media (max-width: 768px) {
@@ -449,6 +449,21 @@ h2 {
   background-color: #ffcc00;
   color: #333333;
 }
+.custom-button {
+  background-color: #ffe600;
+  border: none;
+  color: #333333;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.custom-button:hover {
+  background-color: #ffcc00;
+  color: #333333;
+}
 
 /*ESTILOS DASHBOARDS*/
 .container {
@@ -536,6 +551,8 @@ button.btn-warning {
 .ruta-container {
   text-align: center;
   padding: 3rem;
+  border-radius: 5rem;
+  margin: 2.5rem 2rem 0 0;
 }
 
 .timeline {
@@ -574,12 +591,12 @@ button.btn-warning {
 }
 
 .timeline-icon.completed {
-  background: green;
+  background: var(--verde);
   color: white;
 }
 
 .timeline-icon.current {
-  background: blue;
+  background: rgb(61, 61, 200);
   color: white;
 }
 
