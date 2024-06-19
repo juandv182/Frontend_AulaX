@@ -51,7 +51,8 @@ h2 {
 
 @media (max-width: 768px) {
   .app-container.collapsed {
-    margin-left: 0; /* Ancho del sidebar cuando está contraído en móviles */
+    margin-left: 2rem;
+    margin-right: 2rem; /* Ancho del sidebar cuando está contraído en móviles */
   }
 }
 /* Sidebar.css */

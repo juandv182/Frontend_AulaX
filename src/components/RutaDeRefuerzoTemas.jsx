@@ -4,10 +4,9 @@ import { VideoViewer } from './VideoViewer';
 import { WebGLViewer } from './WebGLViewer';
 import { ScratchViewer } from './ScratchViewer';
 import { VisualizadorPDF } from './VisualizadorPDF';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, Pagination } from 'react-bootstrap';
 import { BiCommentDetail } from "react-icons/bi";
 import { useParams } from 'react-router-dom';
-import { Pagination } from 'react-bootstrap';
 
 export const RutaDeRefuerzoTemas = () => {
   const [temas, setTemas] = useState([]);
@@ -15,11 +14,14 @@ export const RutaDeRefuerzoTemas = () => {
   const [file, setFile] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [cuestionario, setCuestionario] = useState({});
+  const [quizzId, setQuizzId] = useState(null); // Estado para guardar el quizzId
   const [respuestas, setRespuestas] = useState({});
   const [paginaActual, setPaginaActual] = useState(0);
-
+  const [resultado, setResultado] = useState(null);
+  const { tipoCurso } = useParams();
   let idTypeFile = 0;
-
+  let idCurso=0;
+  {tipoCurso==="matematicas" ? idCurso=1 : idCurso=2}
   if (localStorage.getItem("preferenciaAprendizaje")[0] === "K") {
     idTypeFile = 2;
   } else if (localStorage.getItem("preferenciaAprendizaje")[0] === "A" || localStorage.getItem("preferenciaAprendizaje")[0] === "V") {
@@ -31,11 +33,15 @@ export const RutaDeRefuerzoTemas = () => {
   useEffect(() => {
     const fetchTemas = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/reinforce-topics/user/${localStorage.getItem("id")}`);
-        setTemas(response.data);
-        console.log(response.data);
-        if (response.data.length > 0) {
-          setTemaActual(response.data[0]);
+        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/reinforce-topics/user/${localStorage.getItem("id")}/course/${idCurso}`);
+        const fetchedTemas = response.data.map(item => ({
+          ...item.topic,
+          estado: item.estado
+        }));
+        setTemas(fetchedTemas);
+        console.log(fetchedTemas);
+        if (fetchedTemas.length > 0) {
+          setTemaActual(fetchedTemas[0]);
         }
       } catch (error) {
         console.error('Error fetching topics:', error);
@@ -67,7 +73,8 @@ export const RutaDeRefuerzoTemas = () => {
     setTemaActual(tema);
     try {
       const responseQuestions = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/quizzes/${tema.id}/grouped-questions`);
-      setCuestionario(responseQuestions.data);
+      setCuestionario(responseQuestions.data.groupedQuestions); // Actualizar la estructura
+      setQuizzId(responseQuestions.data.quizzId); // Guardar quizzId
     } catch (error) {
       console.error('Error fetching questions:', error);
     }
@@ -124,8 +131,9 @@ export const RutaDeRefuerzoTemas = () => {
           });
         }
       }));
-
-      setShowModal(false);
+      const responseResults = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/quizzes/${quizzId}/detailed-total-nota-topic/${localStorage.getItem("id")}/User/${temaActual.id}/Topic`); // Usar quizzId
+      setResultado(responseResults.data);
+      console.log(responseResults.data);
     } catch (error) {
       console.error('Error updating alternatives:', error);
     }
@@ -164,7 +172,7 @@ export const RutaDeRefuerzoTemas = () => {
                             checked={respuestas[pregunta.id] === opcion.id}
                             onChange={() => handleSelectOption(pregunta.id, opcion.id)}
                           />
-                          <label className="form-check-label" htmlFor={`opcion-${opcion.id}`}>
+                          <label className="form-check-label text-white" htmlFor={`opcion-${opcion.id}`}>
                             {opcion.value}
                           </label>
                         </div>
@@ -180,49 +188,72 @@ export const RutaDeRefuerzoTemas = () => {
     );
   };
 
+  const renderResultado = () => {
+    return resultado.quizResults.map((result, index) => (
+      <div key={index}>
+        <h3>Nota: {result.nota}</h3>
+        {result.incorrectQuestions.map((item, index) => (
+          <div key={index}>
+            <p><strong>Pregunta:</strong> {item.question.name}</p>
+            <p><strong>Tu Respuesta:</strong> {item.incorrectAlternative.value}</p>
+            <p><strong>Respuesta Correcta:</strong> {item.correctAlternative.value}</p>
+            <hr />
+          </div>
+        ))}
+      </div>
+    ));
+  };
+
   const competencias = Object.keys(cuestionario);
 
   return (
     <>
       {temas.length > 0 ? (
-      <>
-      <div className="container ruta-container">
-        <h1>Ruta de Refuerzo Temas</h1>
-        <div className="timeline d-flex justify-content-between align-items-center">
-          {temas.map((tema, index) => (
-            <div key={tema.id} className="timeline-item text-center">
-              <div
-                className={`timeline-icon ${index < temas.findIndex(t => t.id === temaActual.id) ? 'completed' : ''} ${index === temas.findIndex(t => t.id === temaActual.id) ? 'current' : ''}`}
-                onClick={() => handleClick(tema)}
-              >
-                {index + 1}
-              </div>
-              <div className="timeline-content mt-2">
-                <h5>{tema.name}</h5>
-              </div>
+        <>
+          <div className="container ruta-container">
+            <h1>Ruta de Refuerzo Temas</h1>
+            <div className="timeline d-flex justify-content-between align-items-center">
+              {temas.map((tema, index) => (
+                <div key={tema.id} className="timeline-item text-center">
+                  <div
+                    className={`timeline-icon ${
+                      temaActual.id === tema.id
+                        ? 'current'
+                        : tema.estado
+                        ? 'completed'
+                        : ''
+                    }`}
+                    onClick={() => handleClick(tema)}
+                  >
+                    {index + 1}
+                  </div>
+                  <div className="timeline-content mt-2">
+                    <h5>{tema.name}</h5>
+                
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        <div className="current-topic mt-4">
-          <h2>Tema Actual: {temaActual.name}</h2>
-        </div>
-      
-      </div>
-      <hr></hr>
-      <div className="d-flex justify-content-end me-4">
-          <Button onClick={() => setShowModal(true)} variant="primary" className="custom-button" size='lg'>
-            Dar Evaluación del Tema
-          </Button>
-        </div>
-      
-      {renderVisualizer()}
-      <div className='d-flex justify-content-center mt-4'>
-        <BiCommentDetail size={80} />
-      </div>
-      </>
+            <div className="current-topic mt-4">
+              <h2>Tema Actual: {temaActual.name}</h2>
+              <p>Estado : {temaActual.estado ? "Completado" : "No Completado"}</p>
+            </div>
+          </div>
+          <hr></hr>
+          <div className="d-flex justify-content-end me-4">
+            <Button onClick={() => setShowModal(true)} variant="primary" className="custom-button" size='lg'>
+              Dar Evaluación del Tema
+            </Button>
+          </div>
+
+          {renderVisualizer()}
+          <div className='d-flex justify-content-center mt-4'>
+            <BiCommentDetail size={80} />
+          </div>
+        </>
       ) : (
-        <div className="container bg-white p-5 text-center">
-          <h2> Debes realizar la prueba por Curso para saber los temas que debes reforzar</h2>
+        <div className="alert alert-warning">
+          <h2>Debes realizar la prueba por Curso para saber los temas que debes reforzar</h2>
         </div>
       )}
 
@@ -231,12 +262,20 @@ export const RutaDeRefuerzoTemas = () => {
           <Modal.Title>Cuestionario por Tema</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {competencias.length > 0 && renderPreguntas(competencias[paginaActual])}
+          {resultado ? renderResultado() : competencias.length > 0 && renderPreguntas(competencias[paginaActual])}
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" className="custom-button" onClick={handleSubmit}>
-            Enviar
-          </Button>
+          {resultado ? (
+            <Button variant="secondary" className="custom-button" onClick={async () => {setShowModal(false)
+              ;setResultado(null);
+              await axios.put(`${import.meta.env.VITE_API_BASE_URL}/quizzes/${quizzId}/unmark-alternatives`);
+              window.location.reload();
+            }}>Cerrar</Button>
+          ) : (
+            <Button variant="primary" className="custom-button" onClick={handleSubmit}>
+              Terminar Cuestionario
+            </Button>
+          )}
         </Modal.Footer>
       </Modal>
     </>

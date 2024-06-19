@@ -105,7 +105,7 @@ export const CuestionarioNivelCurso = () => {
                                                         checked={respuestas[pregunta.id] === opcion.id}
                                                         onChange={() => handleSelectOption(pregunta.id, opcion.id)}
                                                     />
-                                                    <label className="form-check-label" htmlFor={`opcion-${opcion.id}`}>
+                                                    <label className="form-check-label text-white" htmlFor={`opcion-${opcion.id}`}>
                                                         {opcion.value}
                                                     </label>
                                                 </div>
