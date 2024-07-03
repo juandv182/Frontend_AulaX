@@ -306,13 +306,13 @@ h2 {
 
 .competencias-selector {
   display: flex;
-  justify-content: space-evenly;
+  flex-wrap: wrap;
+  justify-content: center;
   margin: 2rem;
   background-color: var(--amarilloSuave); /* Usa el color amarillo de tu paleta */
   border-radius: 1rem; /* Bordes redondeados para el contenedor */
   padding: 1rem; /* Espaciado interno del contenedor */
   border: 2px solid #ffd700; /* Borde del color que necesites */
- 
 }
 
 .competencia-btn {
@@ -325,34 +325,66 @@ h2 {
   font-weight: bold; /* Fuente en negrita para el texto del botón */
   cursor: pointer; /* Cursor de tipo puntero */
   transition: background-color 0.2s; /* Transición suave para el efecto de hover */
-  font-size: 1.2rem;;
+  font-size: 1.2rem;
 }
-.competencia-btn.active {
 
+.competencia-btn.active {
   color: red; /* Texto blanco para contraste */
   border-color: #0056b3; /* Borde más oscuro para mayor profundidad */
   font-weight: bold; /* Negrita para destacar */
-
 }
 
 .competencia-btn:hover {
   background-color: var(--amarilloSuave); /* Color al pasar el cursor sobre el botón */
   text-decoration: none; /* No subrayado */
-  
 }
+
 .custom-table {
   background-color: #ffffff; /* Fondo blanco para la tabla */
-  color: #333; 
-
-  
+  color: #333;
 }
+
 .custom-table thead th {
   background-color: #cacaca; /* Fondo claro para los encabezados de la tabla */
-  
+  cursor: pointer;
 }
 
 .custom-table tbody tr:hover {
   background-color: #f9f9f9; /* Fondo al pasar el mouse */
+}
+
+.competencia-descripcion {
+  background-color: #e0e0e0; /* Color de fondo gris */
+  padding: 1rem; /* Espaciado interno */
+  margin: 1rem; /* Espaciado externo */
+  border-radius: 0.5rem; /* Bordes redondeados */
+  text-align: center; /* Centrar texto */
+  border: 1px solid #505254;
+}
+
+/* Media queries para pantallas grandes */
+@media (min-width: 768px) {
+  .competencias-selector {
+      justify-content: space-between;
+  }
+
+  .competencia-btn {
+      margin: 0.5rem 1rem; /* Ajusta el espaciado entre los botones en pantallas grandes */
+      font-size: 1.5rem; /* Aumenta el tamaño de la fuente en pantallas grandes */
+  }
+}
+
+/* Media queries para pantallas pequeñas */
+@media (max-width: 767px) {
+  .competencias-selector {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .competencia-btn {
+      font-size: 1rem; /* Tamaño de fuente más pequeño para pantallas móviles */
+      margin: 0.3rem; /* Espaciado más pequeño para pantallas móviles */
+  }
 }
 
 .react-pdf__Page__canvas {

@@ -1,11 +1,21 @@
-import { TituloPorPagina } from "../components/layout/TituloPorPagina"
+import React, { useState } from 'react';
+import { TituloPorPagina } from "../components/layout/TituloPorPagina";
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import { FaBell, FaLock, FaUserCog, FaUserEdit } from 'react-icons/fa';
-import React from 'react';
+import { FaLock, FaUserEdit } from 'react-icons/fa';
+import { EncuestaModal } from '../components/EncuestaModal'; // Importar EncuestaModal
 
-export const Ajustes = () =>{
+export const Ajustes = () => {
+    const [showEncuestaModal, setShowEncuestaModal] = useState(false); // Estado para el modal
 
-    return(
+    const handleOpenEncuestaModal = () => {
+        setShowEncuestaModal(true);
+    };
+
+    const handleCloseEncuestaModal = () => {
+        setShowEncuestaModal(false);
+    };
+
+    return (
         <>
         <TituloPorPagina
           titulo="Ajustes"
@@ -22,29 +32,33 @@ export const Ajustes = () =>{
                                     <FaLock size={30} />
                                 </Col>
                                 <Col xs={8} className="text-col">
-                                    <h5>Cambiar Contraseña</h5>
+                                    <h4>Cambiar Contraseña</h4>
                                 </Col>
                                 <Col xs={2} className="arrow-col">
                                     <FaUserEdit size={20} />
                                 </Col>
                             </Row>
                            
-                            <Row className="ajustes-item">
+                            <Row className="ajustes-item cursor-pointer" onClick={handleOpenEncuestaModal}>
+                                
                                 <Col xs={2} className="icon-col">
                                     <FaUserEdit size={30} />
                                 </Col>
                                 <Col xs={8} className="text-col">
-                                    <h5>Modificar preferencias de aprendizaje</h5>
+                                    <h4>Modificar preferencias de aprendizaje</h4>
                                 </Col>
                                 <Col xs={2} className="arrow-col">
                                     <FaUserEdit size={20} />
                                 </Col>
+                                
                             </Row>
                         </Card.Body>
                     </Card>
                 </Col>
             </Row>
         </Container>
+
+        <EncuestaModal show={showEncuestaModal} handleClose={handleCloseEncuestaModal} /> {/* Agregar EncuestaModal */}
         </>
     )
 }

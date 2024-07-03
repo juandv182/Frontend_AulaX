@@ -80,7 +80,7 @@ export const EncuestaModal = ({ show, handleClose }) => {
       const finalArray = [localStorage.getItem("genero") === "false" ? 0 : 1, calcularEdad(localStorage.getItem("fechaNacimiento")), ...markedAlternatives];
       console.log(finalArray);
 
-      const responsePredict = await axios.post('http://127.0.0.1:8000/predict', finalArray);
+      const responsePredict = await axios.post('https://serviciomodelovark-django.onrender.com/predict', finalArray);
       setResultado(responsePredict.data.result);
       console.log(responsePredict.data.result);
       localStorage.removeItem("preferenciaAprendizaje");

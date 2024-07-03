@@ -4,7 +4,7 @@ import { VideoViewer } from './VideoViewer';
 import { WebGLViewer } from './WebGLViewer';
 import { ScratchViewer } from './ScratchViewer';
 import { VisualizadorPDF } from './VisualizadorPDF';
-import { Modal, Button, Pagination } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 import { BiCommentDetail } from "react-icons/bi";
 import { useParams } from 'react-router-dom';
 
@@ -14,14 +14,15 @@ export const RutaDeRefuerzoTemas = () => {
   const [file, setFile] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [cuestionario, setCuestionario] = useState({});
-  const [quizzId, setQuizzId] = useState(null); // Estado para guardar el quizzId
+  const [quizzId, setQuizzId] = useState(0);
   const [respuestas, setRespuestas] = useState({});
   const [paginaActual, setPaginaActual] = useState(0);
   const [resultado, setResultado] = useState(null);
   const { tipoCurso } = useParams();
+  
   let idTypeFile = 0;
-  let idCurso=0;
-  {tipoCurso==="matematicas" ? idCurso=1 : idCurso=2}
+  let idCurso = tipoCurso === "matematicas" ? 1 : 2;
+
   if (localStorage.getItem("preferenciaAprendizaje")[0] === "K") {
     idTypeFile = 2;
   } else if (localStorage.getItem("preferenciaAprendizaje")[0] === "A" || localStorage.getItem("preferenciaAprendizaje")[0] === "V") {
@@ -35,6 +36,7 @@ export const RutaDeRefuerzoTemas = () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/reinforce-topics/user/${localStorage.getItem("id")}/course/${idCurso}`);
         const fetchedTemas = response.data.map(item => ({
+          registroId: item.id,  // Guardamos el id del registro
           ...item.topic,
           estado: item.estado
         }));
@@ -49,7 +51,7 @@ export const RutaDeRefuerzoTemas = () => {
     };
 
     fetchTemas();
-  }, []);
+  }, [idCurso]);
 
   useEffect(() => {
     const fetchFile = async () => {
@@ -71,12 +73,38 @@ export const RutaDeRefuerzoTemas = () => {
 
   const handleClick = async (tema) => {
     setTemaActual(tema);
+    console.log(`Registro ID: ${temaActual.registroId}, Tema ID: ${file.id}` ); // Imprimir el id del registro y del tema relacionado
     try {
       const responseQuestions = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/quizzes/${tema.id}/grouped-questions`);
-      setCuestionario(responseQuestions.data.groupedQuestions); // Actualizar la estructura
-      setQuizzId(responseQuestions.data.quizzId); // Guardar quizzId
+      setCuestionario(responseQuestions.data.groupedQuestions);
+      setQuizzId(responseQuestions.data.quizzId);
+      console.log(quizzId)
+      // await axios.post(`${import.meta.env.VITE_API_BASE_URL}/adaptive-history/save`, {
+      //   rtId: parseInt(tema.registroId), // ID del registro
+      //   fId: file.id, // ID del file actual
+      //   qId: quizzId // ID del quizz
+      // });
+      console.log('API llamada con éxito');
     } catch (error) {
       console.error('Error fetching questions:', error);
+    }
+    if(quizzId!=0){
+    try {
+      const formData = new FormData();
+      formData.append('rtId',tema.registroId);  // ID del registro de refuerzo
+      formData.append('fId', file.id);         // ID fijo, actualiza según sea necesario
+      formData.append('qId', quizzId);        // ID del cuestionario, actualiza según sea necesario
+
+      
+      const response = await axios.post('http://localhost:8080/adaptive-history/save', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      console.log('Respuesta del servidor:', response.data);
+    } catch (error) {
+      console.error('Error guardando la historia adaptativa:', error);
+    }
     }
   };
 
@@ -106,7 +134,6 @@ export const RutaDeRefuerzoTemas = () => {
 
   const handleSubmit = async () => {
     try {
-      // Send PUT requests to update is_marked for selected alternatives
       await Promise.all(Object.entries(respuestas).map(async ([preguntaId, alternativaId]) => {
         let alternativa;
         for (const competencia of Object.values(cuestionario)) {
@@ -131,7 +158,7 @@ export const RutaDeRefuerzoTemas = () => {
           });
         }
       }));
-      const responseResults = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/quizzes/${quizzId}/detailed-total-nota-topic/${localStorage.getItem("id")}/User/${temaActual.id}/Topic`); // Usar quizzId
+      const responseResults = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/quizzes/${quizzId}/detailed-total-nota-topic/${localStorage.getItem("id")}/User/${temaActual.id}/Topic`);
       setResultado(responseResults.data);
       console.log(responseResults.data);
     } catch (error) {
@@ -214,7 +241,7 @@ export const RutaDeRefuerzoTemas = () => {
             <h1>Ruta de Refuerzo Temas</h1>
             <div className="timeline d-flex justify-content-between align-items-center">
               {temas.map((tema, index) => (
-                <div key={tema.id} className="timeline-item text-center">
+                <div key={tema.registroId} className="timeline-item text-center">
                   <div
                     className={`timeline-icon ${
                       temaActual.id === tema.id

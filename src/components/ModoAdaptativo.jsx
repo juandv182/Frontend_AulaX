@@ -28,7 +28,7 @@ export const ModoAdaptativo = () =>{
               <img src={cont} alt="Continue"  className='img-fluid'/> 
               <h2 className='display-1'>Continuar donde te quedaste</h2>
             </button>
-            <button onClick={()=> navigate(`/cursos/${tipoCurso}/cuestionarioNivelCurso`)} className="course-card btn btn-light btn-lg d-flex align-items-center justify-content-center text-dark">
+            <button onClick={()=> navigate(`/cursos/${tipoCurso}/modoAdaptativo/historial`)} className="course-card btn btn-light btn-lg d-flex align-items-center justify-content-center text-dark">
               <img src={history} alt="History"  className='img-fluid'/> 
               <h2 className='display-1'>Historial de Recursos Accedidos</h2>
             </button>
