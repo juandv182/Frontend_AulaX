@@ -124,19 +124,21 @@ export const BibliotecaRecursos = () => {
                     <p>{competencias.find(comp => comp.id === competenciaSeleccionada)?.description}</p>
                 </div>
             )}
-            <InputGroup className="my-4 mx-5 w-50">
+            <div className="d-flex my-4 mx-5 w-50">
                 <FormControl
                     placeholder="Buscar por Tema"
                     value={filtro}
                     onChange={(e) => filtrarTemas(e.target.value)}
+                    style={{ fontSize: '1.2em', width: '50%'}}
                 />
-                <Form.Select className="ms-2" onChange={(e) => setUnidadSeleccionada(e.target.value)}>
+                <Form.Select className="ms-2" onChange={(e) => setUnidadSeleccionada(e.target.value)}
+                    style={{ fontSize: '1.2em', width: '50%'}}>
                     <option value="">Seleccionar Unidad</option>
                     {unidades.map(unidad => (
                         <option key={unidad.id} value={unidad.id}>{unidad.name}</option>
                     ))}
                 </Form.Select>
-            </InputGroup>
+            </div>
             <div className="d-flex flex-column align-items-center justify-content-center">
                 <Table bordered hover responsive className="custom-table">
                     <thead>
