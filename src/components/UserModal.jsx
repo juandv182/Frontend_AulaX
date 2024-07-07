@@ -26,13 +26,13 @@ export const UserModal = ({ show, onHide, user }) => {
         <hr></hr>
         <p><span className='font-weight-bold'>Preferencia de aprendizaje  :</span>  {localStorage.getItem("preferenciaAprendizaje")}</p>
         <hr></hr>
-
-
         <Button variant="warning" className="mt-3 custom-button">Editar Perfil</Button>
+        <hr></hr>
+        <hr></hr>
       </Modal.Body>
-      <Modal.Footer>
+      {/* <Modal.Footer>
         <Button variant="warning"  className="mt-3 custom-button" onClick={onHide}>Regresar</Button>
-      </Modal.Footer>
+      </Modal.Footer> */}
     </Modal>
   );
 };

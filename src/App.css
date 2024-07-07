@@ -636,3 +636,38 @@ button.btn-warning {
 .current-topic {
   font-size: 1.5rem;
 }
+/*INICIO*/
+.student-dashboard {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.welcome-section {
+  margin-bottom: 20px;
+}
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+.main-image {
+  filter: blur(1px);
+  border-radius: 15px;
+  border: 5px solid yellow;
+}
+.course-buttons button {
+  margin: 10px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.course-buttons img {
+  margin-right: 10px;
+}
+.custom-button {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffeb3b;
+  color: #000;
+}
