@@ -48,6 +48,10 @@ export const AppRoutes = () => {
                     <Route path="/cursos/:tipoCurso/biblioteca/recursosPorTema/:temaId/video-viewer/:videoId" element={<VideoViewer />} />
                     <Route path="/cursos/:tipoCurso/biblioteca/recursosPorTema/:temaId/webgl-viewer/:fileId" element={<WebGLViewer />} />
                     <Route path="/cursos/:tipoCurso/biblioteca/recursosPorTema/:temaId/scratch-viewer/:scratchId" element={<ScratchViewer />} />
+                    <Route path="/cursos/:tipoCurso/modoAdaptativo/historial/ver-pdf/:fileId" element={<VisualizadorPDF />} />
+                    <Route path="/cursos/:tipoCurso/modoAdaptativo/historial/video-viewer/:videoId" element={<VideoViewer />} />
+                    <Route path="/cursos/:tipoCurso/modoAdaptativo/historial/webgl-viewer/:fileId" element={<WebGLViewer />} />
+                    <Route path="/cursos/:tipoCurso/modoAdaptativo/historial/scratch-viewer/:scratchId" element={<ScratchViewer />} />
                     <Route path="/cursos/:tipoCurso/modoAdaptativo" element={<ModoAdaptativo />} />
                     <Route path="/cursos/:tipoCurso/modoAdaptativo/historial" element={<Historial />} />
                     <Route path="/cursos/:tipoCurso/modoAdaptativo/cuestionarioNivelCurso" element={<CuestionarioNivelCurso />} />
