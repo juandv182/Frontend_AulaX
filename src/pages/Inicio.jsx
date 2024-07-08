@@ -99,8 +99,8 @@ export const Inicio = ({ onSelectResource }) => {
           <div className="student-dashboard">
             <div className="welcome-section">
               <div className="image-container">
-                <img src={recursosed} alt="Recursos Educativos" className="main-image" />
-                <Button className="mt-3 custom-button" onClick={handleContinueClick}>Continuar ruta de aprendizaje</Button>
+                <img src={recursosed} alt="Recursos Educativos" className="main-image img-fluid" />
+                <Button className="mt-3 custom-buttonInicio" onClick={handleContinueClick}>Continuar ruta de aprendizaje</Button>
               </div>
             </div>
             <div className="course-buttons">

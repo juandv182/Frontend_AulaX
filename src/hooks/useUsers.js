@@ -85,7 +85,7 @@ export const useUsers = () => {
                 'success'
             );
             handlerCloseForm();
-            navigate('/users');
+            //navigate('/users');
         } catch (error) {
             if (error.response && error.response.status == 400) {
                 setErrors(error.response.data);

@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import './UserModal.css'; // Importamos los estilos adicionales
 import { FaUserCircle } from 'react-icons/fa';
 import userIcon from './../assets/user.png';
+import { UserModalForm2 } from './UserModalForm2'; 
 
 export const UserModal = ({ show, onHide, user }) => {
+  const [showEditModal, setShowEditModal] = useState(false);
+
+  const handleEditProfileClick = () => {
+    setShowEditModal(true);
+  };
+
+  const handleCloseEditModal = () => {
+    setShowEditModal(false);
+  };
   return (
+    <>
     <Modal show={show} onHide={onHide} centered>
       <Modal.Header closeButton>
         <Modal.Title>Información del Usuario</Modal.Title>
@@ -26,7 +37,7 @@ export const UserModal = ({ show, onHide, user }) => {
         <hr></hr>
         <p><span className='font-weight-bold'>Preferencia de aprendizaje  :</span>  {localStorage.getItem("preferenciaAprendizaje")}</p>
         <hr></hr>
-        <Button variant="warning" className="mt-3 custom-button">Editar Perfil</Button>
+        <Button variant="warning" className="mt-3 custom-button" onClick={handleEditProfileClick}>Editar Perfil</Button>
         <hr></hr>
         <hr></hr>
       </Modal.Body>
@@ -34,5 +45,7 @@ export const UserModal = ({ show, onHide, user }) => {
         <Button variant="warning"  className="mt-3 custom-button" onClick={onHide}>Regresar</Button>
       </Modal.Footer> */}
     </Modal>
+    <UserModalForm2 show={showEditModal} onHide={handleCloseEditModal} />
+    </>
   );
 };

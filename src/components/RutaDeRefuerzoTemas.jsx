@@ -7,6 +7,8 @@ import { VisualizadorPDF } from './VisualizadorPDF';
 import { Modal, Button } from 'react-bootstrap';
 import { BiCommentDetail } from "react-icons/bi";
 import { useParams } from 'react-router-dom';
+import { RiArrowGoBackLine } from 'react-icons/ri';
+import { TituloPorPagina } from './layout/TituloPorPagina';
 
 export const RutaDeRefuerzoTemas = () => {
   const [temas, setTemas] = useState([]);
@@ -237,6 +239,12 @@ export const RutaDeRefuerzoTemas = () => {
     <>
       {temas.length > 0 ? (
         <>
+          <div className="d-flex align-items-center justify-content-start">
+                <button onClick={() => navigate(-1)} type='button' className='btn btn-link ps-4'>
+                    <RiArrowGoBackLine size={27} />
+                </button>
+                <TituloPorPagina titulo="Ruta de Refuerzo" />
+          </div>
           <div className="container ruta-container">
             <h1>Ruta de Refuerzo Temas</h1>
             <div className="timeline d-flex justify-content-between align-items-center">

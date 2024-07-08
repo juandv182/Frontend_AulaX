@@ -31,11 +31,12 @@ export const save = async ({ username, email, password, docente,padrefam,fechaNa
     }
 }
 
-export const update = async({ id, username, email }) => {
+export const update = async({ id, username, email, password }) => {
     try {
         return await usersApi.put(`${BASE_URL}/${id}`, {
             username,
-            email
+            email,
+            password
         });
     } catch (error) {
         throw error;

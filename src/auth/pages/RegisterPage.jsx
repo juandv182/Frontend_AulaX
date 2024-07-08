@@ -134,56 +134,59 @@ export const RegisterPage = () => {
                         />
                     <p className="text-danger">{ errors?.username}</p>
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="nombres" className="form-label">Nombres</label>
-                        <input
-                        type="text"
-                        className="form-control"
-                        id="nombres"
-                        name="nombres"
-                        placeholder='Nombres'
-                        value={userForm.nombres}
-                        onChange={handleChange}
-                        />
+                    <div className="row mb-3">
+                        <div className="col">
+                            <label htmlFor="nombres" className="form-label">Nombres</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="nombres"
+                                name="nombres"
+                                placeholder='Nombres'
+                                value={userForm.nombres}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="col">
+                            <label htmlFor="apellidos" className="form-label">Apellidos</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="apellidos"
+                                name="apellidos"
+                                placeholder='Apellidos'
+                                value={userForm.apellidos}
+                                onChange={handleChange}
+                            />
+                        </div>
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="apellidos" className="form-label">Apellidos</label>
-                        <input
-                        type="text"
-                        className="form-control"
-                        id="apellidos"
-                        name="apellidos"
-                        placeholder='Apellidos'
-                        value={userForm.apellidos}
-                        onChange={handleChange}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="genero" className="form-label">Género</label>
-                        <select
-                        className="form-select"
-                        id="genero"
-                        name="genero"
-                        value={userForm.genero}
-                        onChange={handleChange}
-                        >
-                        <option value={false}>Masculino</option>
-                        <option value={true}>Femenino</option>
-                        </select>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="email" className="form-label">Email</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Email"
-                            className="form-control"
-                            value={userForm.email}
-                            onChange={handleChange}
-                            
-                        />
-                        <p className="text-danger">{errors?.email}</p>
+                    <div className="row mb-3">
+                        <div className="col">
+                            <label htmlFor="genero" className="form-label">Género</label>
+                            <select
+                                className="form-select"
+                                id="genero"
+                                name="genero"
+                                value={userForm.genero}
+                                onChange={handleChange}
+                            >
+                                <option value={false}>Masculino</option>
+                                <option value={true}>Femenino</option>
+                            </select>
+                        </div>
+                        <div className="col">
+                            <label htmlFor="email" className="form-label">Email</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Email"
+                                className="form-control"
+                                value={userForm.email}
+                                onChange={handleChange}
+                            />
+                            <p className="text-danger">{errors?.email}</p>
+                        </div>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="birthdate" className="form-label">Ingrese su fecha de Nacimiento</label>

@@ -56,8 +56,9 @@ export const LoginPage = () => {
                         value={password}
                         onChange={onInputChange}
                     />
+                    <hr></hr>
 
-                    <a href="#" className="link m-5">¿Se olvidó su contraseña?</a>
+                    {/* <a href="#" className="link m-5">¿Se olvidó su contraseña?</a> */}
                     <button
                         className="btn btn-success"
                         type="submit">

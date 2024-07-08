@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TituloPorPagina } from "../components/layout/TituloPorPagina";
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import { FaLock, FaUserEdit } from 'react-icons/fa';
+import { FaArrowCircleRight, FaLock, FaUserEdit } from 'react-icons/fa';
 import { EncuestaModal } from '../components/EncuestaModal'; // Importar EncuestaModal
 
 export const Ajustes = () => {
@@ -32,10 +32,10 @@ export const Ajustes = () => {
                                     <FaLock size={30} />
                                 </Col>
                                 <Col xs={8} className="text-col">
-                                    <h4>Cambiar Contraseña</h4>
+                                    <h3>Editar Perfil</h3>
                                 </Col>
                                 <Col xs={2} className="arrow-col">
-                                    <FaUserEdit size={20} />
+                                    <FaArrowCircleRight size={20} />
                                 </Col>
                             </Row>
                            
@@ -45,10 +45,10 @@ export const Ajustes = () => {
                                     <FaUserEdit size={30} />
                                 </Col>
                                 <Col xs={8} className="text-col">
-                                    <h4>Modificar preferencias de aprendizaje</h4>
+                                    <h3>Modificar preferencias de aprendizaje</h3>
                                 </Col>
                                 <Col xs={2} className="arrow-col">
-                                    <FaUserEdit size={20} />
+                                    <FaArrowCircleRight size={20} />
                                 </Col>
                                 
                             </Row>
